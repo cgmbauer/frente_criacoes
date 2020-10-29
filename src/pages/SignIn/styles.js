@@ -59,26 +59,9 @@ export const Form = styled.form`
     color: var(--color-primary);
 
     margin-left: 6px;
-    margin-top: 10px;
-  }
 
-  input {
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--color-primary);
-
-    background: var(--bg-input);
-
-    border: none;
-    border-radius: 10px;
-
-    padding: 10px;
-
-    margin-top: 5px;
-
-    ::placeholder {
-      color: var(--color-placeholder);
+    &:nth-child(n + 2) {
+      margin-top: 10px;
     }
   }
 
