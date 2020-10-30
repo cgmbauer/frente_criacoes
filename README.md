@@ -23,7 +23,7 @@ Aplicação feita para controlar habilidades e salários do corpo artístico de 
 - Antes de tentar fazer um merge, dê um pull da branch master para a sua branch para pegar as últimas atualizações:
 
     - git checkout <nome_da_sua_branch>                  ex: git checkout dev-gui
-    - git merge master
+    - git pull origin master
     
 - Para fazer um merge de sua branch para a master:
 
