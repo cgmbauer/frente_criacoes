@@ -9,7 +9,7 @@ Aplicação feita para controlar habilidades e salários do corpo artístico de 
 
 ## :gear: Ferramentas
 
-- [ReactJS v.16.13.1](https://reactjs.org/);
+- [ReactJS v.17.0.1](https://reactjs.org/);
 
 - [Axios](https://github.com/axios/axios);
 
