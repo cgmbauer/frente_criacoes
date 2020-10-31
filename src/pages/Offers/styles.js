@@ -120,6 +120,10 @@ export const ReservationInformations = styled.section`
           margin-left: 8px;
           background: var(--bg-button-recusar);
         }
+
+        @media (min-width: 600px) {
+          padding: 5px 4px;
+        }
       }
     }
   }
