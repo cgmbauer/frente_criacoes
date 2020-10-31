@@ -30,9 +30,7 @@ Aplicação feita para controlar habilidades e salários do corpo artístico de 
     - git add .
     - git commit -m 'feat: alguma coisa'     `*obs1`
     - git push -u origin <nome_da_sua_branch>            ex: git push -u origin dev-gui
-    - git checkout master
-    - git merge <nome_da_sua_branch>                     ex: git merge dev-gui
-    - git push -u origin master
+    - vá até sua branch no GitHub e faça um Pull Request
 
     `
     obs1: para saber sobre commits semânticos: https://ilegra.com/blog/tudo-o-que-voce-precisa-saber-sobre-commits-semanticos/
