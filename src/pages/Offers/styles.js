@@ -21,7 +21,6 @@ export const OffersContainer = styled.main`
       color: var(--primary-color);
 
       margin-left: 10px;
-      margin-top: 44px;
     }
   }
 `;
