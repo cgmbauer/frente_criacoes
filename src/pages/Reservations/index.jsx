@@ -17,9 +17,7 @@ const Reservations = () => {
       <img className="logo" src={Logo} alt=" " />
       <NavBar />
       <ReservationsBox>
-        <div>
-          <img className="profile" src={DummyImg} alt="dummy profile logo" />
-        </div>
+        <img className="profile" src={DummyImg} alt="dummy profile logo" />
 
         <ReservationInformations>
           <section>
@@ -28,8 +26,10 @@ const Reservations = () => {
             <p>Terror | $ 5.000,00</p>
           </section>
           <section>
-            <FaCalendarAlt />
-            <p>23/10/2020 - 01/05/2021</p>
+            <div props="display:inline">
+              <FaCalendarAlt />
+              <p>23/10/2020 - 01/05/2021</p>
+            </div>
           </section>
         </ReservationInformations>
       </ReservationsBox>

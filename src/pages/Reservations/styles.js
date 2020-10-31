@@ -38,6 +38,7 @@ export const ReservationsBox = styled.section`
   & + section {
     margin: 23px 10px 0;
   }
+
   .profile {
     width: 50px;
     height: 50px;
@@ -108,8 +109,6 @@ export const ReservationInformations = styled.section`
 
         border: none;
         border-radius: 4px;
-
-        background: var(--bg-button-aceitar);
 
         padding: 3px 4px;
 
