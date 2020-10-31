@@ -11,7 +11,7 @@ export const NavBarContainer = styled.nav`
   justify-content: flex-start;
 
   padding-bottom: 10px;
-  margin: 70px auto 0;
+  margin: 70px auto 44px;
 
   &:after {
     content: '';
@@ -38,7 +38,11 @@ export const NavBarContainer = styled.nav`
     }
 
     &:first-child {
-      margin-left: 30px;
+      margin-left: 10px;
+
+      @media (min-width: 600px) {
+        margin-left: 30px;
+      }
     }
 
     &:nth-child(n + 2) {
