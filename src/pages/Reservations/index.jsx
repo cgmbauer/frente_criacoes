@@ -28,10 +28,8 @@ const Reservations = () => {
             <p>Terror | $ 5.000,00</p>
           </section>
           <section>
-            <div props=" display:inline;">
-              <FaCalendarAlt />
-              <p>23/10/2020 - 01/05/2021</p>
-            </div>
+            <FaCalendarAlt />
+            <p>23/10/2020 - 01/05/2021</p>
           </section>
         </ReservationInformations>
       </ReservationsBox>

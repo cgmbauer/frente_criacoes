@@ -17,7 +17,7 @@ const SignIn = () => {
 
       <Form>
         <label htmlFor="username">Username</label>
-        <input type="text" id="username" name="username" />
+        <Input type="text" id="username" name="username" />
 
         <label htmlFor="password">Senha</label>
         <Input name="password" type="password" id="password" />

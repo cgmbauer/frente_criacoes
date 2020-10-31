@@ -30,7 +30,7 @@ export const ReservationsBox = styled.section`
   flex-direction: row;
 
   padding: 10px;
-  margin: 40px 10px 0;
+  margin: 30px 10px 0;
 
   border: 1px solid #1a842f;
   border-radius: 6px;
