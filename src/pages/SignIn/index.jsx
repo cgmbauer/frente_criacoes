@@ -16,13 +16,15 @@ const SignIn = () => {
       </LoginTitle>
 
       <Form>
-        <label htmlFor="email">E-mail</label>
-        <Input name="email" type="email" id="email" />
+        <label htmlFor="username">Username</label>
+        <input type="text" id="username" name="username" />
 
         <label htmlFor="password">Senha</label>
         <Input name="password" type="password" id="password" />
 
-        <button type="submit">Entrar</button>
+        <button to="/offers" type="submit">
+          Entrar
+        </button>
 
         <Link to="/forgot-password">Esqueci a senha</Link>
       </Form>
