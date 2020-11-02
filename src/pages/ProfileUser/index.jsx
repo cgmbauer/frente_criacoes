@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Input from '../../components/Input';
 
 import {
@@ -11,6 +11,16 @@ import {
 } from './styles';
 
 const ProfileUser = () => {
+  const [name, setName] = useState('');
+
+  const handleSelect = useCallback(
+    event => {
+      const evento = event.target.value;
+      setName(evento);
+    },
+    [setName],
+  );
+
   return (
     <LoginContainer>
       <LoginTitle>
@@ -26,6 +36,15 @@ const ProfileUser = () => {
 
         <label htmlFor="genero">Gênero</label>
         <Input name="genero" type="textarea" id="genero" />
+
+        <label htmlFor="genero-atua">Gênero que atua</label>
+        <select id="genero-atua" onClick={handleSelect}>
+          <option value="">Selecione um gênero</option>
+          <option value="terror">Terror</option>
+          <option value="comedia">Comédia</option>
+        </select>
+
+        <input type="hidden" name={name} />
 
         <label htmlFor="genero2">Gênero que atua</label>
         <Input name="genero2" type="text" id="genero2" />
@@ -55,7 +74,7 @@ const ProfileUser = () => {
         <label htmlFor="Orçamento">Disponibilidade</label>
         <Input
           name="Orçamento"
-          type="number"
+          type="date"
           id="password"
           placeholder="Data Inicial"
         />
@@ -63,7 +82,7 @@ const ProfileUser = () => {
         <label htmlFor="password">Até</label>
         <Input
           name="password"
-          type="name"
+          type="date"
           id="password"
           placeholder="Data final"
         />
