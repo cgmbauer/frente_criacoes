@@ -28,6 +28,7 @@ a {
   text-decoration: none;
 }
 
+
 :root {
   --font-family-primary: 'Nunito', 'sans-serif';
   --color-primary: #000;
@@ -37,8 +38,8 @@ a {
 
   --bg-input: #E5E5E5;
   --color-placeholder: #808080;
-
   --bg-button: #D6B92D;
+  --bg-buttonDir: #F25E74;
   --color-button: #312e38;
 
   --bg-button-aceitar: #1CD141;
