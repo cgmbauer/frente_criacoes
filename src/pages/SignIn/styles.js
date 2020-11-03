@@ -34,7 +34,11 @@ export const LoginContainer = styled.section`
 
 export const LoginTitle = styled.div`
   text-align: center;
-  margin-top: 54px;
+  margin-top: 44px;
+
+  @media (min-width: 600px) {
+    margin-top: 72px;
+  }
 `;
 
 export const LoginTitleText = styled.h1`
@@ -45,7 +49,7 @@ export const LoginTitleText = styled.h1`
 `;
 
 export const Form = styled.form`
-  margin: 112px auto 0;
+  margin: 21px auto 0;
 
   display: flex;
   flex-direction: column;

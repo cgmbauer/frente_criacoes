@@ -2,6 +2,7 @@ import React from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 
 import NavBar from '../../components/NavBar';
+import HeaderInterna from '../../components/HeaderInterna';
 
 import DummyImg from '../../assets/profile-dummy.png';
 
@@ -14,6 +15,7 @@ import {
 const Offers = () => {
   return (
     <OffersContainer>
+      <HeaderInterna />
       <NavBar />
 
       <div>

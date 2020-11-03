@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { FaSignInAlt } from 'react-icons/fa';
 
+import Header from '../../components/HeaderExterna';
 import Input from '../../components/Input';
 
 import { Form, LoginContainer, LoginTitle, LoginTitleText } from './styles';
@@ -11,6 +12,8 @@ import { Form, LoginContainer, LoginTitle, LoginTitleText } from './styles';
 const SignIn = () => {
   return (
     <LoginContainer>
+      <Header />
+
       <LoginTitle>
         <LoginTitleText>Login</LoginTitleText>
       </LoginTitle>
