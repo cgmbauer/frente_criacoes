@@ -19,7 +19,7 @@ const Offers = () => {
       <NavBar />
 
       <div>
-        <h2>Número de reservas: </h2>
+        <h2>Número de reservas: 3</h2>
       </div>
 
       <ReservationBox>
