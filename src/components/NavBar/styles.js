@@ -11,7 +11,7 @@ export const NavBarContainer = styled.nav`
   justify-content: flex-start;
 
   padding-bottom: 10px;
-  margin: 50px auto 44px;
+  margin: 70px auto 44px;
 
   &:after {
     content: '';

@@ -43,7 +43,7 @@ a {
   --color-button: #312e38;
 
   --bg-button-aceitar: #1CD141;
-  --bg-button-recusar: #FF7539;
+  --bg-button-recusar: #ff0909;
 
 }
 `;

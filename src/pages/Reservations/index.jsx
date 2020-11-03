@@ -2,7 +2,8 @@ import React from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 
 import NavBar from '../../components/NavBar';
-import Logo from '../../assets/remoto_logo.svg';
+import HeaderInterna from '../../components/HeaderInterna';
+
 import DummyImg from '../../assets/profile-dummy.png';
 
 import {
@@ -14,8 +15,10 @@ import {
 const Reservations = () => {
   return (
     <ReservationsContainer>
-      <img className="logo" src={Logo} alt=" " />
+      <HeaderInterna />
+
       <NavBar />
+
       <ReservationsBox>
         <img className="profile" src={DummyImg} alt="dummy profile logo" />
 
