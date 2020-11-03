@@ -42,8 +42,8 @@ a {
   --bg-buttonDir: #F25E74;
   --color-button: #312e38;
 
-  --bg-button-aceitar: #1CD141;
-  --bg-button-recusar: #ff0909;
+  --bg-button-aceitar: #47B500;
+  --bg-button-recusar: #ff0000;
 
 }
 `;
