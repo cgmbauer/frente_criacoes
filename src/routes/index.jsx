@@ -5,7 +5,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 
-import Profile from '../pages/Profile';
+import ProfileUser from '../pages/ProfileUser';
 import Reservations from '../pages/Reservations';
 import Offers from '../pages/Offers';
 
@@ -15,7 +15,7 @@ const Routes = () => (
     <Route path="/signup" exact component={SignUp} />
     <Route path="/forgot-password" exact component={ForgotPassword} />
 
-    <Route path="/profile" exact component={Profile} />
+    <Route path="/profile" exact component={ProfileUser} />
     <Route path="/reservations" exact component={Reservations} />
     <Route path="/offers" exact component={Offers} />
   </Switch>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const OffersContainer = styled.main`
+export const ReservationsContainer = styled.main`
   width: 100%;
   height: 100vh;
 
@@ -25,12 +25,12 @@ export const OffersContainer = styled.main`
   }
 `;
 
-export const ReservationBox = styled.section`
+export const ReservationsBox = styled.section`
   display: flex;
   flex-direction: row;
 
   padding: 10px;
-  margin: 40px 10px 0;
+  margin: 30px 10px 0;
 
   border: 1px solid #1a842f;
   border-radius: 6px;
@@ -39,13 +39,18 @@ export const ReservationBox = styled.section`
     margin: 23px 10px 0;
   }
 
-  img {
+  .profile {
     width: 50px;
     height: 50px;
 
     border-radius: 50%;
   }
 
+  .logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media (min-width: 600px) {
     padding: 15px 12px;
   }
@@ -81,19 +86,18 @@ export const ReservationInformations = styled.section`
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      align-items: flex-start;
+      align-items: center;
+
       margin-top: 2px;
 
       svg {
-        width: 15px;
-        height: 15px;
         margin-right: 5px;
         color: var(--color-secondary-cards);
       }
     }
 
     & + section {
-      margin-top: 20px;
+      margin-top: 5px;
 
       button {
         font-family: var(--font-family-primary);
@@ -105,8 +109,6 @@ export const ReservationInformations = styled.section`
 
         border: none;
         border-radius: 4px;
-
-        background: var(--bg-button-aceitar);
 
         padding: 3px 4px;
 
