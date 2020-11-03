@@ -81,11 +81,12 @@ export const ReservationInformations = styled.section`
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      align-items: center;
-
+      align-items: flex-start;
       margin-top: 2px;
 
       svg {
+        width: 15px;
+        height: 15px;
         margin-right: 5px;
         color: var(--color-secondary-cards);
       }
