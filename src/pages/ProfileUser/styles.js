@@ -5,6 +5,12 @@ export const LoginContainer = styled.section`
   height: 100vh;
 
   padding: 10px 20px;
+  .profile {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+  }
 
   a {
     display: flex;
@@ -52,38 +58,39 @@ export const Form = styled.form`
 
   max-width: 400px;
 
-  label {
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    font-size: 12px;
-    color: var(--color-primary);
+  #orcamento{
 
-    margin-left: 6px;
-
-    &:nth-child(n + 2) {
-      margin-top: 10px;
-    }
   }
 
-  > a {
+  input .vlrmax .vlrmin {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction:column
+  }
 
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    color: var(--color-primary);
-    color: #484848;
-    font-size: 14px;
+  button {
     text-align: center;
 
-    margin: 18px 0 0 0;
+    width: 226px;
+    height: 37px;
+    left: 607px;
 
-    transition: text-decoration 0.3s;
+    background: var(--bg-buttonDir);
+
+    border: 0;
+    border-radius: 10px;
+    padding: 0px;
+    margin: 18px auto 0;
+    margin-bottom: 50px;
+
+    color: var(--color-button);
+    font-weight: 500;
+    max-width: 400px;
+    transition: opacity 0.3s;
 
     &:hover {
-      text-decoration: underline;
+      opacity: 0.9;
     }
+
   }
 
   select {
@@ -103,54 +110,6 @@ export const Form = styled.form`
     font-size: 16px;
     color: var(--color-primary);
   }
-`;
-
-export const Form2 = styled.form`
-  margin: 10px auto 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  max-width: 130px;
-
-  label {
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    font-size: 12px;
-    color: var(--color-primary);
-
-    margin-left: 6px;
-
-    &:nth-child(n + 2) {
-      margin-top: 10px;
-    }
-
-    > a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: var(--font-family-primary);
-      font-weight: 400;
-      color: var(--color-primary);
-      color: #484848;
-      font-size: 14px;
-      margin: 18px 0 0 0;
-      text-align: center;
-      transition: text-decoration 0.3s;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-`;
-
-export const Form3 = styled.form`
-  margin: 11px auto 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  max-width: 130px;
 
   label {
     font-family: var(--font-family-primary);
@@ -175,36 +134,14 @@ export const Form3 = styled.form`
     color: var(--color-primary);
     color: #484848;
     font-size: 14px;
+    text-align: center;
 
     margin: 18px 0 0 0;
-
-    text-align: center;
 
     transition: text-decoration 0.3s;
 
     &:hover {
       text-decoration: underline;
     }
-  }
-  button {
-    width: 226px;
-    height: 37px;
-    left: 607px;
 
-    background: var(--bg-buttonDir);
-
-    border: 0;
-    border-radius: 10px;
-    padding: 0px;
-    margin: 18px auto 0;
-
-    color: var(--color-button);
-    font-weight: 500;
-    max-width: 400px;
-    transition: opacity 0.3s;
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
 `;
