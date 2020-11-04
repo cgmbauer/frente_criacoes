@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { FaArrowLeft } from 'react-icons/fa';
 
+import Header from '../../components/HeaderExterna';
 import Input from '../../components/Input';
 
 import { Form, SignupContainer, SignupTitle, SignupTitleText } from './styles';
@@ -11,6 +12,8 @@ import { Form, SignupContainer, SignupTitle, SignupTitleText } from './styles';
 const SignUp = () => {
   return (
     <SignupContainer>
+      <Header />
+
       <SignupTitle>
         <SignupTitleText>Cadastro</SignupTitleText>
       </SignupTitle>
