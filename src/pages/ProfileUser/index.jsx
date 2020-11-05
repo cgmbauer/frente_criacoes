@@ -1,14 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import Input from '../../components/Input';
-
-import {
-  Form,
-  Form2,
-  Form3,
-  LoginContainer,
-  LoginTitle,
-  LoginTitleText,
-} from './styles';
+import NavBar from '../../components/NavBar';
+import Logo from '../../assets/remoto_logo.svg';
+import DummyImg from '../../assets/profile-dummy.png';
+import { Form, LoginContainer, LoginTitle, LoginTitleText } from './styles';
 
 const ProfileUser = () => {
   const [name, setName] = useState('');
@@ -23,7 +18,10 @@ const ProfileUser = () => {
 
   return (
     <LoginContainer>
+      <img className="logo" src={Logo} alt=" " />
+      <NavBar />
       <LoginTitle>
+        <img className="profile" src={DummyImg} alt="dummy profile logo" />
         <LoginTitleText>Perfil De Usuário</LoginTitleText>
       </LoginTitle>
 
@@ -42,15 +40,12 @@ const ProfileUser = () => {
           <option value="">Selecione um gênero</option>
           <option value="terror">Terror</option>
           <option value="comedia">Comédia</option>
+          <option value="acão">Acão</option>
+          <option value="aventura">Aventura</option>
         </select>
 
         <input type="hidden" name={name} />
 
-        <label htmlFor="genero2">Gênero que atua</label>
-        <Input name="genero2" type="text" id="genero2" />
-      </Form>
-
-      <Form2>
         <label htmlFor="Orçamento">Orçamento</label>
         <Input name="Orçamento" type="number" id="orcamento" placeholder="R$" />
 
@@ -58,7 +53,8 @@ const ProfileUser = () => {
         <Input
           name="password"
           type="name"
-          id="password"
+          id="vlrmin"
+          className="vlrmin"
           placeholder="Valor mínimo"
         />
 
@@ -66,11 +62,11 @@ const ProfileUser = () => {
         <Input
           name="password"
           type="name"
-          id="password"
+          id="vlrmax"
+          className="vlrmax"
           placeholder="Valor máximo"
         />
-      </Form2>
-      <Form3>
+
         <label htmlFor="Orçamento">Disponibilidade</label>
         <Input
           name="Orçamento"
@@ -86,8 +82,9 @@ const ProfileUser = () => {
           id="password"
           placeholder="Data final"
         />
+
         <button type="submit">Continuar</button>
-      </Form3>
+      </Form>
     </LoginContainer>
   );
 };
