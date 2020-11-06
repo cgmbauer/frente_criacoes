@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
+  max-width: 800px;
 
   padding: 10px 20px;
+  margin: 0 auto;
   .profile {
     width: 50px;
     height: 50px;

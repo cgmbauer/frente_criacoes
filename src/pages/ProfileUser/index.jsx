@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import Input from '../../components/Input';
 import NavBar from '../../components/NavBar';
-import Logo from '../../assets/remoto_logo.svg';
+import HeaderInterna from '../../components/HeaderInterna';
+
 import DummyImg from '../../assets/profile-dummy.png';
+
 import { Form, LoginContainer, LoginTitle, LoginTitleText } from './styles';
 
 const ProfileUser = () => {
@@ -18,8 +20,14 @@ const ProfileUser = () => {
 
   return (
     <LoginContainer>
-      <img className="logo" src={Logo} alt=" " />
-      <NavBar />
+      <HeaderInterna />
+      <NavBar
+        navProps={[
+          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Reservas', link: '/reservations' },
+          { text: 'Propostas', link: '/offers' },
+        ]}
+      />
       <LoginTitle>
         <img className="profile" src={DummyImg} alt="dummy profile logo" />
         <LoginTitleText>Perfil De Usuário</LoginTitleText>
