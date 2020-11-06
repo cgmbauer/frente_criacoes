@@ -3,13 +3,16 @@ import styled from 'styled-components';
 export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
-
   padding: 10px 20px;
+
   .profile {
     width: 50px;
     height: 50px;
 
     border-radius: 50%;
+  }
+  img.profile {
+    margin-bottom: 30px;
   }
 
   a {
@@ -41,6 +44,7 @@ export const LoginContainer = styled.section`
 export const LoginTitle = styled.div`
   text-align: center;
   margin-top: 64px;
+  margin-bottom: 50px;
 `;
 
 export const LoginTitleText = styled.h1`
@@ -58,13 +62,24 @@ export const Form = styled.form`
 
   max-width: 400px;
 
-  #orcamento{
+ .date1, .date2{
+   display:inline-block;
+   text-decoration:center;
+   width:170px;
+   margin:1px 1px 0;
+   text-align: center;
+ }
 
+  #orcamento{
+   width:100%;
   }
 
-  input .vlrmax .vlrmin {
-    display: flex;
-    flex-direction:column
+  .vlrmax, .vlrmin, .rs {
+    display: inline-block;
+    max-width: 129px;
+    margin: 1px 1px 0;
+
+
   }
 
   button {
@@ -143,5 +158,4 @@ export const Form = styled.form`
     &:hover {
       text-decoration: underline;
     }
-
 `;

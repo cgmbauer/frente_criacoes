@@ -46,43 +46,53 @@ const ProfileUser = () => {
 
         <input type="hidden" name={name} />
 
-        <label htmlFor="Orçamento">Orçamento</label>
-        <Input name="Orçamento" type="number" id="orcamento" placeholder="R$" />
+        <div id="orcamento">
+          <div className="rs">
+            <label htmlFor="Orçamento">Orçamento</label>
+            <Input name="Orçamento" type="number" placeholder="R$" />
+          </div>
+          <div className="vlrmin">
+            <label htmlFor="password"> </label>
+            <Input
+              name="password"
+              type="name"
+              id="vlrmin"
+              placeholder="Valor mínimo"
+            />
+          </div>
+          <div className="vlrmax">
+            <label htmlFor="password"> </label>
+            <Input
+              name="password"
+              type="name"
+              id="vlrmax"
+              className="vlrmax"
+              placeholder="Valor máximo"
+            />
+          </div>
+        </div>
 
-        <label htmlFor="password"> </label>
-        <Input
-          name="password"
-          type="name"
-          id="vlrmin"
-          className="vlrmin"
-          placeholder="Valor mínimo"
-        />
+        <div>
+          <div className="date1">
+            <label htmlFor="Orçamento">Disponibilidade</label>
+            <Input
+              name="Orçamento"
+              type="date"
+              id="password"
+              placeholder="Data Inicial"
+            />
+          </div>
 
-        <label htmlFor="password"> </label>
-        <Input
-          name="password"
-          type="name"
-          id="vlrmax"
-          className="vlrmax"
-          placeholder="Valor máximo"
-        />
-
-        <label htmlFor="Orçamento">Disponibilidade</label>
-        <Input
-          name="Orçamento"
-          type="date"
-          id="password"
-          placeholder="Data Inicial"
-        />
-
-        <label htmlFor="password">Até</label>
-        <Input
-          name="password"
-          type="date"
-          id="password"
-          placeholder="Data final"
-        />
-
+          <div className="date2">
+            <label htmlFor="password">Até</label>
+            <Input
+              name="password"
+              type="date"
+              id="password"
+              placeholder="Data final"
+            />
+          </div>
+        </div>
         <button type="submit">Continuar</button>
       </Form>
     </LoginContainer>
