@@ -16,7 +16,13 @@ const Offers = () => {
   return (
     <OffersContainer>
       <HeaderInterna />
-      <NavBar />
+      <NavBar
+        navProps={[
+          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Reservas', link: '/reservations' },
+          { text: 'Propostas', link: '/offers' },
+        ]}
+      />
 
       <div>
         <h2>Número de reservas: 4</h2>

@@ -17,7 +17,13 @@ const Reservations = () => {
     <ReservationsContainer>
       <HeaderInterna />
 
-      <NavBar />
+      <NavBar
+        navProps={[
+          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Reservas', link: '/reservations' },
+          { text: 'Propostas', link: '/offers' },
+        ]}
+      />
 
       <ReservationsBox>
         <img className="profile" src={DummyImg} alt="dummy profile logo" />
