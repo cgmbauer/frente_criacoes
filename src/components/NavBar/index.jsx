@@ -4,20 +4,20 @@ import { NavLink } from 'react-router-dom';
 
 import { NavBarContainer } from './styles';
 
-const NavBar = () => {
+const NavBar = ({ navProps }) => {
   return (
     <NavBarContainer>
-      <NavLink activeClassName="selected" to="/profile">
-        Seu perfil
-      </NavLink>
-
-      <NavLink activeClassName="selected" to="/reservations">
-        Reservas
-      </NavLink>
-
-      <NavLink activeClassName="selected" to="/offers">
-        Propostas
-      </NavLink>
+      {navProps.map(properties => {
+        return (
+          <NavLink
+            key={properties.link}
+            activeClassName="selected"
+            to={properties.link}
+          >
+            {properties.text}
+          </NavLink>
+        );
+      })}
     </NavBarContainer>
   );
 };

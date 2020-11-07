@@ -1,28 +1,26 @@
 import React, { useCallback, useState } from 'react';
 import Input from '../../components/Input';
 import NavBar from '../../components/NavBar';
-import Logo from '../../assets/remoto_logo.svg';
+import HeaderInterna from '../../components/HeaderInterna';
+import Select from '../../components/Select';
 import DummyImg from '../../assets/profile-dummy.png';
+
 import { Form, LoginContainer, LoginTitle, LoginTitleText } from './styles';
 
 const ProfileUser = () => {
-  const [name, setName] = useState('');
-
-  const handleSelect = useCallback(
-    event => {
-      const evento = event.target.value;
-      setName(evento);
-    },
-    [setName],
-  );
-
   return (
     <LoginContainer>
-      <img className="logo" src={Logo} alt=" " />
-      <NavBar />
+      <HeaderInterna />
+      <NavBar
+        navProps={[
+          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Reservas', link: '/reservations' },
+          { text: 'Propostas', link: '/offers' },
+        ]}
+      />
       <LoginTitle>
-        <img className="profile" src={DummyImg} alt="dummy profile logo" />
         <LoginTitleText>Perfil De Usuário</LoginTitleText>
+        <img className="profile" src={DummyImg} alt="dummy profile logo" />
       </LoginTitle>
 
       <Form>
@@ -33,18 +31,21 @@ const ProfileUser = () => {
         <Input name="email" type="email" id="email" />
 
         <label htmlFor="genero">Gênero</label>
-        <Input name="genero" type="textarea" id="genero" />
+        <Select id="genero">
+          <option value=""> </option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="N">Prefiro não Responder </option>
+        </Select>
 
         <label htmlFor="genero-atua">Gênero que atua</label>
-        <select id="genero-atua" onClick={handleSelect}>
+        <Select id="genero-atua">
           <option value="">Selecione um gênero</option>
           <option value="terror">Terror</option>
           <option value="comedia">Comédia</option>
           <option value="acão">Acão</option>
           <option value="aventura">Aventura</option>
-        </select>
-
-        <input type="hidden" name={name} />
+        </Select>
 
         <div id="orcamento">
           <div className="rs">
@@ -72,19 +73,16 @@ const ProfileUser = () => {
           </div>
         </div>
 
-        <div>
+        <div className="flexbox">
+          <label htmlFor="Orçamento">Disponibilidade</label>
           <div className="date1">
-            <label htmlFor="Orçamento">Disponibilidade</label>
             <Input
               name="Orçamento"
               type="date"
               id="password"
               placeholder="Data Inicial"
             />
-          </div>
-
-          <div className="date2">
-            <label htmlFor="password">Até</label>
+            <p>até</p>
             <Input
               name="password"
               type="date"

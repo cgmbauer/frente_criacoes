@@ -4,7 +4,10 @@ export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
   padding: 10px 20px;
+  max-width: 800px;
 
+  padding: 10px 20px;
+  margin: 0 auto;
   .profile {
     width: 50px;
     height: 50px;
@@ -12,32 +15,10 @@ export const LoginContainer = styled.section`
     border-radius: 50%;
   }
   img.profile {
-    margin-bottom: 30px;
-  }
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    color: var(--color-primary);
-    font-size: 14px;
-
-    margin: 35px 0 0 0;
-
+    margin-top: 30px;
+    width: 100px;
+    height: 100px;
     text-align: center;
-
-    transition: opacity 0.3s;
-
-    &:hover {
-      opacity: 0.9;
-    }
-
-    svg {
-      margin-right: 10px;
-    }
   }
 `;
 
@@ -62,23 +43,41 @@ export const Form = styled.form`
 
   max-width: 400px;
 
+  .flexbox{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    width:100%;
+    label {
+    margin-top:10px;
+   }
+  }
+
  .date1, .date2{
-   display:inline-block;
-   text-decoration:center;
-   width:170px;
-   margin:1px 1px 0;
-   text-align: center;
+  display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    input {
+      width:150px;
+    }
  }
 
   #orcamento{
    width:100%;
+   display:flex;
+   justify-content:space-between;
+   label {
+    margin-top:10px;
+   }
   }
 
   .vlrmax, .vlrmin, .rs {
     display: inline-block;
     max-width: 129px;
     margin: 1px 1px 0;
-
 
   }
 
@@ -108,7 +107,7 @@ export const Form = styled.form`
 
   }
 
-  select {
+  /* select {
     display: flex;
     align-items: center;
 
@@ -124,7 +123,7 @@ export const Form = styled.form`
     font-weight: 400;
     font-size: 16px;
     color: var(--color-primary);
-  }
+  } */
 
   label {
     font-family: var(--font-family-primary);

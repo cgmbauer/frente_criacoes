@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const OffersContainer = styled.main`
   width: 100%;
@@ -25,7 +25,7 @@ export const OffersContainer = styled.main`
   }
 `;
 
-export const ReservationBox = styled.section`
+export const CardBox = styled.section`
   display: flex;
   flex-direction: row;
 
@@ -51,13 +51,14 @@ export const ReservationBox = styled.section`
   }
 `;
 
-export const ReservationInformations = styled.section`
+export const CardInformations = styled.section`
   margin-left: 15px;
 
   @media (min-width: 600px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     width: 100%;
   }
@@ -76,55 +77,43 @@ export const ReservationInformations = styled.section`
       font-weight: 500;
       color: var(--color-secondary-cards);
     }
+  }
+`;
 
-    div {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      margin-top: 2px;
+export const AvailableSection = styled.section`
+  margin-top: 10px;
 
-      svg {
-        width: 15px;
-        height: 15px;
-        margin-right: 5px;
-        color: var(--color-secondary-cards);
-      }
-    }
+  @media (min-width: 600px) {
+    margin-top: 0;
+  }
 
-    & + section {
-      margin-top: 20px;
+  > p {
+    font-family: var(--font-family-primary);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
 
-      button {
-        font-family: var(--font-family-primary);
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--color-secondary);
+    width: 100px;
 
-        width: 80px;
+    ${props =>
+      props.isAvailable
+        ? css`
+            color: var(--bg-button-aceitar) !important;
+            border: 1px solid var(--bg-button-aceitar) !important;
+          `
+        : css`
+            color: var(--bg-button-recusar) !important;
+            border: 1px solid var(--bg-button-recusar) !important;
+          `};
 
-        border: none;
-        border-radius: 4px;
+    border-radius: 4px;
 
-        background: var(--bg-button-aceitar);
+    background: transparent;
 
-        padding: 3px 4px;
+    padding: 3px 10px;
 
-        transition: opacity 0.3;
-
-        &:hover {
-          opacity: 0.9;
-        }
-
-        & + button {
-          margin-left: 8px;
-          background: var(--bg-button-recusar);
-        }
-
-        @media (min-width: 600px) {
-          padding: 5px 4px;
-        }
-      }
+    @media (min-width: 600px) {
+      padding: 2px 4px;
     }
   }
 `;

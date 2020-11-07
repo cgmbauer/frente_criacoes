@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.section`
+export const SignupProfileAdmin = styled.section`
   width: 100%;
   height: 100vh;
 
   padding: 10px 20px;
+
+  nav {
+    margin: 30px 0 0;
+  }
 
   a {
     display: flex;
@@ -32,16 +36,12 @@ export const LoginContainer = styled.section`
   }
 `;
 
-export const LoginTitle = styled.div`
+export const SignupTitle = styled.div`
   text-align: center;
-  margin-top: 44px;
-
-  @media (min-width: 600px) {
-    margin-top: 72px;
-  }
+  margin-top: 54px;
 `;
 
-export const LoginTitleText = styled.h1`
+export const SignupTitleText = styled.h1`
   margin: 0 auto;
   font-family: var(--font-family-primary);
   font-weight: 700;
@@ -49,7 +49,7 @@ export const LoginTitleText = styled.h1`
 `;
 
 export const Form = styled.form`
-  margin: 21px auto 0;
+  margin: 50px auto 0;
 
   display: flex;
   flex-direction: column;
@@ -78,9 +78,9 @@ export const Form = styled.form`
     border-radius: 10px;
 
     padding: 10px;
-    margin: 18px auto 0;
+    margin: 50px auto 0;
 
-    color: var(--color-button);
+    color: #e9eff9;
     font-weight: 500;
 
     transition: opacity 0.3s;
@@ -89,26 +89,5 @@ export const Form = styled.form`
       opacity: 0.9;
     }
   }
-
-  > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    color: var(--color-primary);
-    color: #484848;
-    font-size: 14px;
-
-    margin: 18px 0 0 0;
-
-    text-align: center;
-
-    transition: text-decoration 0.3s;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `;

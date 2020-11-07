@@ -7,17 +7,23 @@ import ForgotPassword from '../pages/ForgotPassword';
 
 import ProfileUser from '../pages/ProfileUser';
 import Reservations from '../pages/Reservations';
+import ProfileDir from '../pages/ProfileAdmin';
 import Offers from '../pages/Offers';
+
+import Dashboard from '../pages/Dashboard';
 
 const Routes = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
-    <Route path="/signup" exact component={SignUp} />
-    <Route path="/forgot-password" exact component={ForgotPassword} />
+    <Route path="/signup" component={SignUp} />
+    <Route path="/forgot-password" component={ForgotPassword} />
 
-    <Route path="/profile" exact component={ProfileUser} />
-    <Route path="/reservations" exact component={Reservations} />
-    <Route path="/offers" exact component={Offers} />
+    <Route path="/profile" component={ProfileUser} />
+    <Route path="/reservations" component={Reservations} />
+    <Route path="/offers" component={Offers} />
+
+    <Route path="/dashboard" component={Dashboard} />
+    <Route path="/ProfileAdmin" component={ProfileDir} />
   </Switch>
 );
 
