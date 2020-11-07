@@ -7,7 +7,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 
 import ProfileUser from '../pages/ProfileUser';
 import Reservations from '../pages/Reservations';
-import ProfileDir from '../pages/ProfileAdmin';
+import ProfileAdmin from '../pages/ProfileAdmin';
 import Offers from '../pages/Offers';
 
 import Dashboard from '../pages/Dashboard';
@@ -23,7 +23,7 @@ const Routes = () => (
     <Route path="/offers" component={Offers} />
 
     <Route path="/dashboard" component={Dashboard} />
-    <Route path="/ProfileAdmin" component={ProfileDir} />
+    <Route path="/admin-profile" component={ProfileAdmin} />
   </Switch>
 );
 
