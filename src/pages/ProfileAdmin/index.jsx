@@ -16,9 +16,9 @@ const ProfileAdmin = () => {
       <HeaderInterna />
       <NavBar
         navProps={[
-          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Seu perfil', link: '/admin-profile' },
           { text: 'Buscas', link: '/search' },
-          { text: 'Dashboard', link: '/Dashboard' },
+          { text: 'Dashboard', link: '/dashboard' },
         ]}
       />
 
