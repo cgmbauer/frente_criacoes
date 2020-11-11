@@ -4,6 +4,7 @@ export const SelectContainer = styled.main`
   display: flex;
   align-items: center;
 
+  min-height: 44px;
   border: none;
   border-radius: 10px;
 

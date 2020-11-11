@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  min-height: 44px;
+
   border: none;
   border-radius: 10px;
 
@@ -14,6 +16,8 @@ export const Container = styled.div`
 
   input {
     flex: 1;
+
+    width: 100%;
 
     font-family: var(--font-family-primary);
     font-weight: 400;
