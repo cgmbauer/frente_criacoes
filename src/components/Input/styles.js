@@ -22,7 +22,7 @@ export const Container = styled.div`
     font-family: var(--font-family-primary);
     font-weight: 400;
     font-size: 16px;
-    color: var(--color-primary);
+    color: var(--color-input);
 
     background: transparent;
 
@@ -30,6 +30,13 @@ export const Container = styled.div`
 
     ::placeholder {
       color: var(--color-placeholder);
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px var(--bg-input) inset !important;
     }
   }
 `;
