@@ -6,10 +6,6 @@ export const SignupProfileAdmin = styled.section`
 
   padding: 10px 20px;
 
-  nav {
-    margin: 30px 0 0;
-  }
-
   a {
     display: flex;
     justify-content: center;
@@ -34,6 +30,14 @@ export const SignupProfileAdmin = styled.section`
       margin-right: 10px;
     }
   }
+  img.profile {
+    margin-top: 30px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 50%;
+    }
+}
 `;
 
 export const SignupTitle = styled.div`
@@ -55,6 +59,8 @@ export const Form = styled.form`
   flex-direction: column;
 
   max-width: 400px;
+
+
 
   label {
     font-family: var(--font-family-primary);

@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
 import Input from '../../components/Input';
+import DummyImg from '../../assets/profile-dummy.png';
 
 import {
   Form,
@@ -24,11 +25,12 @@ const ProfileAdmin = () => {
 
       <SignupTitle>
         <SignupTitleText>Perfil De Usuario</SignupTitleText>
+        <img className="profile" src={DummyImg} alt="dummy profile logo" />
       </SignupTitle>
 
       <Form>
         <label htmlFor="name">Nome Completo</label>
-        <Input name="name" type="text" id="password" />
+        <Input name="name" type="text" id="name" />
 
         <label htmlFor="email">E-mail</label>
         <Input name="email" type="email" id="email" />

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useCallback, useState } from 'react';
 import Input from '../../components/Input';
 import NavBar from '../../components/NavBar';
@@ -33,9 +34,9 @@ const ProfileUser = () => {
         <label htmlFor="genero">Gênero</label>
         <Select id="genero">
           <option value=""> </option>
-          <option value="Masculino">Masculino</option>
-          <option value="Feminino">Feminino</option>
-          <option value="N">Prefiro não Responder </option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+          <option value="prefironresp">Prefiro não Responder</option>
         </Select>
 
         <label htmlFor="genero-atua">Gênero que atua</label>
@@ -47,51 +48,19 @@ const ProfileUser = () => {
           <option value="aventura">Aventura</option>
         </Select>
 
-        <div id="orcamento">
-          <div className="rs">
-            <label htmlFor="Orçamento">Orçamento</label>
-            <Input name="Orçamento" type="number" placeholder="R$" />
+        <div id="orcDisponibilidade">
+          <div className="cache">
+            <label htmlFor="cache">Cachê</label>
+            <Input name="cache" type="text" placeholder="R$" />
           </div>
-          <div className="vlrmin">
-            <label htmlFor="password"> </label>
-            <Input
-              name="password"
-              type="name"
-              id="vlrmin"
-              placeholder="Valor mínimo"
-            />
-          </div>
-          <div className="vlrmax">
-            <label htmlFor="password"> </label>
-            <Input
-              name="password"
-              type="name"
-              id="vlrmax"
-              className="vlrmax"
-              placeholder="Valor máximo"
-            />
+          <div className="disponibilidade">
+            <label htmlFor="disponibilidade">Disponibilidade</label>
+            <Select id="disponibilidade">
+              <option value="comedia"> </option>
+            </Select>
           </div>
         </div>
-
-        <div className="flexbox">
-          <label htmlFor="Orçamento">Disponibilidade</label>
-          <div className="date1">
-            <Input
-              name="Orçamento"
-              type="date"
-              id="password"
-              placeholder="Data Inicial"
-            />
-            <p>até</p>
-            <Input
-              name="password"
-              type="date"
-              id="password"
-              placeholder="Data final"
-            />
-          </div>
-        </div>
-        <button type="submit">Continuar</button>
+        <button type="submit">Atualizar</button>
       </Form>
     </LoginContainer>
   );
