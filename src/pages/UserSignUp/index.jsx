@@ -24,7 +24,7 @@ const UserSignUp = () => {
         await api.post('/actress/create', {
           name: nome,
           gender: '',
-          cache: 0,
+          price: 0,
           relevance: 0,
           genre: '',
           status: true,
