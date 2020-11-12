@@ -17,30 +17,33 @@ import { UForm, LoginContainer, LoginTitle, LoginTitleText } from './styles';
 const ProfileUser = () => {
   const { user, updateUser } = useAuth();
 
-  const history = useHistory();
-
   const handleSubmit = useCallback(
     async formData => {
       try {
+        console.log(formData);
         const { name, email, gender, genre, cache, disponibilidade } = formData;
-        await api.put(`actress/update/${user.id}`, {
+
+        const userData = {
           name,
-          email,
           gender,
+          cache,
+          relevance: user.relevance,
           genre,
-          price: cache,
           status: disponibilidade,
-          relevance: 0,
-        });
+          user: {
+            login: email,
+            password: user.password,
+          },
+        };
 
-        updateUser();
+        await api.put(`actress/update/${user.id}`, userData);
 
-        history.push('/user-profile');
+        updateUser(userData);
       } catch (err) {
         console.log(err, 'erro ao tentar fazer signIn');
       }
     },
-    [history],
+    [updateUser, user.id, user.password, user.relevance],
   );
 
   return (
@@ -75,7 +78,7 @@ const ProfileUser = () => {
 
         <label htmlFor="genero-atua">Gênero que atua</label>
         <Select name="genre" id="genero-atua">
-          <option value="">Selecione um gênero</option>
+          <option value=""> </option>
           <option value="terror">Terror</option>
           <option value="comedia">Comédia</option>
           <option value="acão">Acão</option>
@@ -90,7 +93,8 @@ const ProfileUser = () => {
           <div className="disponibilidade">
             <label htmlFor="disponibilidade">Disponibilidade</label>
             <Select name="disponibilidade" id="disponibilidade">
-              <option value="comedia"> </option>
+              <option value="disponivel">Disponível</option>
+              <option value="indisponivel">Indisponível</option>
             </Select>
           </div>
         </div>

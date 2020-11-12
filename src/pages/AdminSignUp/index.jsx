@@ -21,7 +21,7 @@ const AdminSignUp = () => {
       try {
         const { nome, email, password } = formData;
 
-        await api.post('/actress/create', {
+        await api.post('/producer/create', {
           name: nome,
           user: {
             login: email,

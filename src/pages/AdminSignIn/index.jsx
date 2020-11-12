@@ -22,7 +22,7 @@ const AdminSignIn = () => {
       try {
         await signIn({ email: formData.email, password: formData.password });
 
-        history.push('/user-profile');
+        history.push('/admin-profile');
       } catch (err) {
         console.log(err, 'erro ao tentar fazer signIn');
       }
