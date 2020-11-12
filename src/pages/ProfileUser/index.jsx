@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useCallback, useState } from 'react';
 import Input from '../../components/Input';
 import NavBar from '../../components/NavBar';

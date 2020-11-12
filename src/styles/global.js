@@ -33,8 +33,11 @@ a {
   --font-family-primary: 'Nunito', 'sans-serif';
   --color-primary: #000;
   --color-secondary: #fff;
+  --color-cards-admin: #A18900;
 
   --color-secondary-cards: #808080;
+  --color-box-cards-green: #1a842f;
+  --color-box-cards-gold: #D6B92D;
 
   --bg-input: #E5E5E5;
   --color-placeholder: #808080;
