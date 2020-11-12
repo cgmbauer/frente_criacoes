@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const SignupContainer = styled.section`
+import { Form } from '@unform/web';
+
+export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
 
@@ -32,20 +34,24 @@ export const SignupContainer = styled.section`
   }
 `;
 
-export const SignupTitle = styled.div`
+export const LoginTitle = styled.div`
   text-align: center;
-  margin-top: 54px;
+  margin-top: 44px;
+
+  @media (min-width: 600px) {
+    margin-top: 72px;
+  }
 `;
 
-export const SignupTitleText = styled.h1`
+export const LoginTitleText = styled.h1`
   margin: 0 auto;
   font-family: var(--font-family-primary);
   font-weight: 700;
   color: var(--color-primary);
 `;
 
-export const Form = styled.form`
-  margin: 112px auto 0;
+export const UForm = styled(Form)`
+  margin: 21px auto 0;
 
   display: flex;
   flex-direction: column;
@@ -68,13 +74,13 @@ export const Form = styled.form`
   button {
     width: 60%;
 
-    background: var(--bg-button);
+    background: var(--bg-buttonDir);
 
     border: 0;
     border-radius: 10px;
 
     padding: 10px;
-    margin: 18px auto 0;
+    margin: 35px auto 0;
 
     color: var(--color-button);
     font-weight: 500;
