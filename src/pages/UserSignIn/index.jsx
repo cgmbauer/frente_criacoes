@@ -22,7 +22,7 @@ const UserSignIn = () => {
       try {
         await signIn({ email: formData.email, password: formData.password });
 
-        history.push('/offers');
+        history.push('/user-profile');
       } catch (err) {
         console.log(err, 'erro ao tentar fazer signIn');
       }
@@ -45,7 +45,7 @@ const UserSignIn = () => {
         <label htmlFor="password">Senha</label>
         <Input name="password" type="password" id="password" />
 
-        <button to="/offers" type="submit">
+        <button to="/user-profile" type="submit">
           Entrar
         </button>
       </UForm>
