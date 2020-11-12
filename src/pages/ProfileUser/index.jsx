@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import Input from '../../components/Input';
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
@@ -13,7 +13,7 @@ const ProfileUser = () => {
       <HeaderInterna />
       <NavBar
         navProps={[
-          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Seu perfil', link: '/user-profile' },
           { text: 'Reservas', link: '/reservations' },
           { text: 'Propostas', link: '/offers' },
         ]}
