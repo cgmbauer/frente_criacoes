@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Form } from '@unform/web';
+
 export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
@@ -35,7 +37,7 @@ export const LoginTitleText = styled.h1`
   color: var(--color-primary);
 `;
 
-export const Form = styled.form`
+export const UForm = styled(Form)`
   margin: 10px auto 0;
   display: flex;
   flex-direction: column;

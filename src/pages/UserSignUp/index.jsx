@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 
 import { Link, useHistory } from 'react-router-dom';
 
@@ -6,16 +6,12 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 import api from '../../services/api';
 
-import { useAuth } from '../../hooks/auth';
-
 import Header from '../../components/HeaderExterna';
 import Input from '../../components/Input';
 
 import { UForm, SignupContainer, SignupTitle, SignupTitleText } from './styles';
 
 const UserSignUp = () => {
-  const { signIn } = useAuth();
-
   const formRef = useRef(null);
 
   const history = useHistory();
@@ -23,11 +19,19 @@ const UserSignUp = () => {
   const handleSubmit = useCallback(
     async formData => {
       try {
-        const { email, password } = formData;
+        const { nome, email, password } = formData;
 
         await api.post('/actress/create', {
-          email,
-          password,
+          name: nome,
+          gender: '',
+          cache: 0,
+          relevance: 0,
+          genre: '',
+          status: true,
+          user: {
+            login: email,
+            password,
+          },
         });
 
         history.push('/user-signin');
@@ -47,6 +51,9 @@ const UserSignUp = () => {
       </SignupTitle>
 
       <UForm onSubmit={handleSubmit} ref={formRef}>
+        <label htmlFor="nome">Nome</label>
+        <Input name="nome" type="text" id="nome" required />
+
         <label htmlFor="email">E-mail</label>
         <Input name="email" type="email" id="email" required />
 

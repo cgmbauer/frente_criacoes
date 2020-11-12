@@ -6,16 +6,12 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 import api from '../../services/api';
 
-import { useAuth } from '../../hooks/auth';
-
 import Header from '../../components/HeaderExterna';
 import Input from '../../components/Input';
 
 import { UForm, SignupContainer, SignupTitle, SignupTitleText } from './styles';
 
 const AdminSignUp = () => {
-  const { signIn } = useAuth();
-
   const formRef = useRef(null);
 
   const history = useHistory();
@@ -23,11 +19,14 @@ const AdminSignUp = () => {
   const handleSubmit = useCallback(
     async formData => {
       try {
-        const { email, password } = formData;
+        const { nome, email, password } = formData;
 
         await api.post('/actress/create', {
-          email,
-          password,
+          name: nome,
+          user: {
+            login: email,
+            password,
+          },
         });
 
         history.push('/admin-signin');
@@ -47,6 +46,9 @@ const AdminSignUp = () => {
       </SignupTitle>
 
       <UForm onSubmit={handleSubmit} ref={formRef}>
+        <label htmlFor="nome">Nome</label>
+        <Input name="nome" type="text" id="nome" required />
+
         <label htmlFor="email">E-mail</label>
         <Input name="email" type="email" id="email" required />
 
