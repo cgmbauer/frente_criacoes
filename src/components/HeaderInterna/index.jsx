@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { FaPowerOff } from 'react-icons/fa';
 
 import { useAuth } from '../../hooks/auth';
@@ -16,7 +18,9 @@ const HeaderInterna = () => {
 
   return (
     <HeaderContainer>
-      <img src={LogoIcon} alt="controle remoto" />
+      <Link to="/">
+        <img src={LogoIcon} alt="controle remoto" />
+      </Link>
 
       <button type="button" onClick={handleSignOut}>
         <FaPowerOff />
