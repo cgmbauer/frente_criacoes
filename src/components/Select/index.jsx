@@ -14,6 +14,9 @@ const Select = ({ children, name, ...props }) => {
       name: fieldName,
       ref: selectRef.current,
       path: 'value',
+      setValue: (ref, value) => {
+        ref.select.select.setValue(value);
+      },
     });
   }, [fieldName, registerField]);
 

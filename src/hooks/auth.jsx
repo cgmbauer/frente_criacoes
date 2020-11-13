@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [adminData, setAdminData] = useState([]);
 
   const adminSign = useCallback(
-    ({ id, name, login, password }) => {
+    (id, name, login, password) => {
       const adminLog = {
         id,
         name,
@@ -28,64 +28,67 @@ export const AuthProvider = ({ children }) => {
         permission: 'admin',
       };
 
-      setAdminData([...adminData, adminLog]);
-    },
-    [adminData],
-  );
-
-  const signIn = useCallback(
-    async ({ email, password }) => {
-      const userResponse = await api.get('/actress/list');
-
-      const adminResponse = adminData;
-
-      const isUserValid = userResponse.data.filter(
-        userList => userList.user.login === email,
+      const checkAdminData = adminData.map(admin =>
+        admin.id === adminLog.id ? adminLog : admin,
       );
 
-      const isAdminValid = adminResponse.filter(
-        adminList => adminList.user.login === email,
-      );
-
-      if (isUserValid.length > 0) {
-        isUserValid.permission = 'none';
-        setData(isUserValid);
-        localStorage.setItem('@Remote: user', JSON.stringify(isUserValid));
-      } else if (isAdminValid.length > 0) {
-        setData(isAdminValid);
-        localStorage.setItem('@Remote: user', JSON.stringify(isAdminValid));
+      if (checkAdminData.includes(adminLog)) {
+        setAdminData([...checkAdminData]);
+        localStorage.setItem(
+          '@Remote: admin',
+          JSON.stringify([...checkAdminData]),
+        );
+      } else {
+        setAdminData([...checkAdminData, adminLog]);
+        localStorage.setItem(
+          '@Remote: admin',
+          JSON.stringify([...checkAdminData, adminLog]),
+        );
       }
     },
     [adminData],
   );
 
-  // const adminSign = useCallback(
-  //   async ({ id, name, login, password }) => {
-  //     const adminLog = {
-  //       id,
-  //       name,
-  //       user: {
-  //         login,
-  //         password,
-  //       },
-  //       permission: 'admin',
-  //     };
+  const signIn = useCallback(async ({ email, password }) => {
+    const userResponse = await api.get('/actress/list');
 
-  //     setAdminData([...adminData, adminLog]);
+    let isUserValid = [];
+    if (userResponse.data) {
+      isUserValid = userResponse.data.filter(
+        userList => userList.user.login === email,
+      );
+    }
 
-  //     await signIn({
-  //       email: adminLog.user.login,
-  //       password: adminLog.user.password,
-  //     });
-  //   },
-  //   [adminData, signIn],
-  // );
+    let localStorageAdminData = localStorage.getItem('@Remote: admin');
+
+    if (localStorageAdminData) {
+      localStorageAdminData = [...JSON.parse(localStorageAdminData)];
+      setAdminData(localStorageAdminData);
+    }
+
+    const isAdminValid = localStorageAdminData.filter(
+      adminList => adminList.user.login === email,
+    );
+    console.log(localStorageAdminData);
+    console.log(isAdminValid);
+
+    if (isUserValid.length > 0) {
+      isUserValid.permission = 'none';
+      setData(isUserValid[0]);
+      localStorage.setItem('@Remote: user', JSON.stringify(isUserValid[0]));
+    } else if (isAdminValid.length > 0) {
+      console.log('entrou');
+      setData(isAdminValid[0]);
+      localStorage.setItem('@Remote: user', JSON.stringify(isAdminValid[0]));
+    }
+  }, []);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@Remote: user');
 
     setData({});
-  }, []);
+    console.log(adminData);
+  }, [adminData]);
 
   const updateUser = useCallback(user => {
     // VERIFICAR SE O USUÁRIO TEM PERMISSÃO PARA ROTA
@@ -96,7 +99,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data, signIn, signOut, updateUser, adminSign }}
+      value={{
+        user: data,
+        signIn,
+        signOut,
+        updateUser,
+        adminSign,
+        admin: adminData,
+      }}
     >
       {children}
     </AuthContext.Provider>

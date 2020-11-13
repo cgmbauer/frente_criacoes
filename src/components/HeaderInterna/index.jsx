@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { FaPowerOff } from 'react-icons/fa';
 
@@ -12,9 +12,14 @@ import { HeaderContainer } from './styles';
 
 const HeaderInterna = () => {
   const { signOut } = useAuth();
+
+  const history = useHistory();
+
   const handleSignOut = useCallback(() => {
     signOut();
-  }, [signOut]);
+
+    history.push('/');
+  }, [history, signOut]);
 
   return (
     <HeaderContainer>
