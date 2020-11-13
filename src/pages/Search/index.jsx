@@ -53,18 +53,48 @@ const Search = () => {
     }
   }, []);
 
+  const handleUserRelevance = useCallback(async castId => {
+    const response = await api.get(`actress/${castId}`);
+
+    const userDataFromAPI = response.data;
+
+    const userData = {
+      name: userDataFromAPI.name,
+      gender: userDataFromAPI.gender,
+      price: userDataFromAPI.price,
+      relevance: userDataFromAPI.relevance + 1,
+      genre: userDataFromAPI.genre,
+      status: userDataFromAPI.status,
+      user: {
+        login: userDataFromAPI.login,
+        password: 123456,
+      },
+    };
+
+    await api.put(`actress/update/${userDataFromAPI.id}`, userData);
+  }, []);
+
   const handleActivated = useCallback(
     async castId => {
-      setActivated(true);
+      try {
+        setActivated(true);
 
-      await api.post(`reserve/save/${castId}`, {
-        reserveDate: date,
-        producer: {
-          id: user.id,
-        },
-      });
+        await api.post(`reserve/save/${castId}`, {
+          reserveDate: date,
+          producer: {
+            id: user.id,
+          },
+        });
+
+        handleUserRelevance(castId);
+      } catch (err) {
+        console.log(
+          err,
+          'Não foi possível fazer o agendamento, por favor tente novamente.',
+        );
+      }
     },
-    [date, user.id],
+    [date, handleUserRelevance, user.id],
   );
 
   return (
@@ -87,7 +117,7 @@ const Search = () => {
               <option value="aventura">Aventura</option>
               <option value="comedia">Comédia</option>
               <option value="ficcao cientifica">Ficção Cientifica</option>
-              <option value="torror">Terror</option>
+              <option value="terror">Terror</option>
             </Select>
           </FilterBox>
           <div className="container-casting">
