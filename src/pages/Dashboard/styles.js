@@ -419,7 +419,6 @@ export const Dialog = styled.div`
 `;
 
 export const CalendarBox = styled.div`
-
   margin-left: 90px;
   margin-top: 100px;
   width: 249px;
@@ -438,9 +437,10 @@ export const CalendarBox = styled.div`
     height: 40px;
 
     h3 {
-
       color: #ffffff;
       font-size: 15px;
+    }
+  }
 `;
 
 export const CalendarInformations = styled.section`

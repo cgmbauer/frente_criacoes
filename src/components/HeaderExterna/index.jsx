@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import LogoIcon from '../../assets/remoto_logo.svg';
 
 import { HeaderContainer } from './styles';
@@ -7,7 +9,9 @@ import { HeaderContainer } from './styles';
 const HeaderExterna = () => {
   return (
     <HeaderContainer>
-      <img src={LogoIcon} alt="controle remoto" />
+      <Link to="/">
+        <img src={LogoIcon} alt="controle remoto" />
+      </Link>
     </HeaderContainer>
   );
 };

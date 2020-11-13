@@ -40,10 +40,10 @@ const UserSignIn = () => {
 
       <UForm onSubmit={handleSubmit} ref={formRef}>
         <label htmlFor="username">E-mail</label>
-        <Input name="email" type="text" id="username" />
+        <Input name="email" type="text" id="username" required />
 
         <label htmlFor="password">Senha</label>
-        <Input name="password" type="password" id="password" />
+        <Input name="password" type="password" id="password" required />
 
         <button to="/user-profile" type="submit">
           Entrar
