@@ -61,23 +61,22 @@ export const AuthProvider = ({ children }) => {
 
     let localStorageAdminData = localStorage.getItem('@Remote: admin');
 
+    let isAdminValid = [];
+
     if (localStorageAdminData) {
       localStorageAdminData = [...JSON.parse(localStorageAdminData)];
       setAdminData(localStorageAdminData);
-    }
 
-    const isAdminValid = localStorageAdminData.filter(
-      adminList => adminList.user.login === email,
-    );
-    console.log(localStorageAdminData);
-    console.log(isAdminValid);
+      isAdminValid = localStorageAdminData.filter(
+        adminList => adminList.user.login === email,
+      );
+    }
 
     if (isUserValid.length > 0) {
       isUserValid.permission = 'none';
       setData(isUserValid[0]);
       localStorage.setItem('@Remote: user', JSON.stringify(isUserValid[0]));
     } else if (isAdminValid.length > 0) {
-      console.log('entrou');
       setData(isAdminValid[0]);
       localStorage.setItem('@Remote: user', JSON.stringify(isAdminValid[0]));
     }
