@@ -1,6 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import Modal from 'react-modal';
-import { FaCalendarAlt, FaTrophy, FaUserClock, FaTimes } from 'react-icons/fa';
+import {
+  FaCalendarAlt,
+  FaTrophy,
+  FaUserClock,
+  FaTimes,
+  FaRegCalendarAlt,
+} from 'react-icons/fa';
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
 
@@ -20,6 +26,13 @@ import {
   Dialog,
   CalendarBox,
   CalendarInformations,
+  DialogMyReservations,
+  CardBoxMyReservations,
+  CardInformationsMyReservations,
+  DialogDates,
+  CardBoxDates,
+  DialogArtist,
+  CardBoxArtist,
 } from './styles';
 
 Modal.setAppElement('#root');
@@ -30,6 +43,30 @@ const Dashboard = () => {
   }, []);
   const openModal = useCallback(() => {
     setModalisOpen(true);
+  }, []);
+
+  const [modalMyReservations, setModalMyReservationsIsOpen] = useState(false);
+  const closeModalMyReservations = useCallback(() => {
+    setModalMyReservationsIsOpen(false);
+  }, []);
+  const openModalMyReservations = useCallback(() => {
+    setModalMyReservationsIsOpen(true);
+  }, []);
+
+  const [modalDatesIsOpen, setModalDatesIsOpen] = useState(false);
+  const closeModalDates = useCallback(() => {
+    setModalDatesIsOpen(false);
+  }, []);
+  const openModalDates = useCallback(() => {
+    setModalDatesIsOpen(true);
+  }, []);
+
+  const [modalArtistIsOpen, setModalArtistIsOpen] = useState(false);
+  const closeModalArtist = useCallback(() => {
+    setModalArtistIsOpen(false);
+  }, []);
+  const openModalArtist = useCallback(() => {
+    setModalArtistIsOpen(true);
   }, []);
   return (
     <>
@@ -44,7 +81,7 @@ const Dashboard = () => {
         />
 
         <StatisticBox>
-          <ReservationSection>
+          <ReservationSection onClick={openModalMyReservations}>
             <div>
               <h4>Número de reservas</h4>
               <FaUserClock />
@@ -52,7 +89,7 @@ const Dashboard = () => {
             <p>435</p>
           </ReservationSection>
 
-          <DateSection>
+          <DateSection onClick={openModalDates}>
             <div>
               <h4>Meses em alta</h4>
               <FaCalendarAlt />
@@ -62,7 +99,7 @@ const Dashboard = () => {
             <p>Setembro</p>
           </DateSection>
 
-          <TopSection>
+          <TopSection onClick={openModalArtist}>
             <div>
               <h4>Top artistas</h4>
               <FaTrophy />
@@ -143,6 +180,85 @@ const Dashboard = () => {
               </CalendarBox>
             </div>
           </Dialog>
+        </Overlay>
+        <Dashboard />
+      </Modal>
+      <Modal
+        isOpen={modalMyReservations}
+        onRequestClose={() => setModalMyReservationsIsOpen(false)}
+      >
+        <Overlay>
+          <DialogMyReservations>
+            <div className="divCloseModal">
+              <FaTimes onClick={closeModalMyReservations} />
+            </div>
+            <h2 className="reservas">
+              <div className="iconDiv">
+                <FaUserClock />
+              </div>
+              Suas reservas
+            </h2>
+            <h5>Número de reservas: 3</h5>
+            <CardBoxMyReservations>
+              <img src={DummyImg} alt="dummy profile logo" />
+              <CardInformationsMyReservations>
+                <section>
+                  <h3>Anônimo Jones</h3>
+                  <p>Terror | $ 5.000,00</p>
+                  <div>
+                    <FaCalendarAlt />
+                    <p>11/11/2020 - 19/02/2021</p>
+                  </div>
+                </section>
+              </CardInformationsMyReservations>
+            </CardBoxMyReservations>
+          </DialogMyReservations>
+        </Overlay>
+        <Dashboard />
+      </Modal>
+      <Modal
+        isOpen={modalDatesIsOpen}
+        onRequestClose={() => setModalDatesIsOpen(false)}
+      >
+        <Overlay>
+          <DialogDates>
+            <div className="divCloseModal">
+              <FaTimes onClick={closeModalDates} />
+            </div>
+            <h2 className="reservas">
+              <div className="iconDiv">
+                <FaRegCalendarAlt />
+              </div>
+              Datas em alta
+            </h2>
+            <CardBoxDates>20/12/2020</CardBoxDates>
+            <CardBoxDates>10/01/2021</CardBoxDates>
+          </DialogDates>
+        </Overlay>
+        <Dashboard />
+      </Modal>
+      <Modal
+        isOpen={modalArtistIsOpen}
+        onRequestClose={() => setModalArtistIsOpen(false)}
+      >
+        <Overlay>
+          <DialogArtist>
+            <div className="divCloseModal">
+              <FaTimes onClick={closeModalArtist} />
+            </div>
+            <h2>
+              <div className="iconDiv">
+                <FaTrophy />
+              </div>
+              Top artistas
+            </h2>
+            <CardBoxArtist>
+              <h3>1 - Anônimo da Silva Pereira</h3>
+            </CardBoxArtist>
+            <CardBoxArtist>
+              <h3>2 - Elicreusa Rosanna de Ruanda</h3>
+            </CardBoxArtist>
+          </DialogArtist>
         </Overlay>
         <Dashboard />
       </Modal>
