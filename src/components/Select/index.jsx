@@ -5,21 +5,23 @@ import { useField } from '@unform/core';
 import { SelectContainer } from './styles';
 
 const Select = ({ children, name, ...props }) => {
-  const inputRef = useRef(null);
+  const selectRef = useRef(null);
 
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: inputRef.current,
+      ref: selectRef.current,
       path: 'value',
     });
   }, [fieldName, registerField]);
 
   return (
     <SelectContainer>
-      <select {...props}>{children}</select>
+      <select ref={selectRef} {...props} defaultValue={defaultValue}>
+        {children}
+      </select>
     </SelectContainer>
   );
 };
