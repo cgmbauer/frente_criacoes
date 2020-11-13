@@ -49,7 +49,7 @@ const ProfileAdmin = () => {
       <NavBar
         navProps={[
           { text: 'Seu perfil', link: '/admin-profile' },
-          { text: 'Buscas', link: '/search' },
+          { text: 'Buscas', link: '/admin-search' },
           { text: 'Dashboard', link: '/dashboard' },
         ]}
       />

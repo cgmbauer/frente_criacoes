@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Form } from '@unform/web';
 
 export const SearchContainer = styled.main`
@@ -10,7 +10,9 @@ export const SearchContainer = styled.main`
   margin: 0 auto;
   h1 {
     text-align: center;
-    margin: 40px auto 40px;
+    margin: 100px auto 40px;
+
+    font-size: 20px;
   }
 `;
 
@@ -225,42 +227,108 @@ export const ReservationsBox = styled.section`
 `;
 
 export const ReservationInformations = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-left: 15px;
 
   @media (min-width: 600px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     width: 100%;
   }
 
+  h3 {
+    font-family: var(--font-family-primary);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
 
-    h3 {
-      font-family: var(--font-family-primary);
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--primary-color);
-    }
+  p {
+    font-family: var(--font-family-primary);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-secondary-cards);
+  }
 
-    p {
-      font-family: var(--font-family-primary);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--color-secondary-cards);
-    }
+  /* .bt-offers {
+    background: var(--bg-button-aceitar);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 7px;
+    font-family: var(--font-family-primary);
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    margin-right: 5px;
+    margin-top: 10px;
+    align-items: center;
 
-    .bt-offers {
-      background: var(--bg-button-aceitar);
+    @media (min-width: 600px) {
+      margin-top: 0;
       padding: 10px 15px;
-      border: none;
-      border-radius: 7px;
-      font-family: var(--font-family-primary);
-      font-size: 10px;
-      font-weight: 500;
-      color: white;
-      margin-right: 5px;
-      align-items: center;
     }
+  } */
+
+  .unavailable {
+    color: var(--bg-button-recusar) !important;
+    font-family: var(--font-family-primary);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+
+    width: 90px;
+
+    border: 1px solid var(--bg-button-recusar) !important;
+
+    border-radius: 4px;
+
+    background: transparent;
+
+    padding: 3px 10px;
+    margin: 10px 5px 0 0;
+
+    @media (min-width: 600px) {
+      margin-top: 0;
+      padding: 7px 10px;
+    }
+  }
+`;
+
+export const Button = styled.button`
+  /* background: var(--bg-button-aceitar); */
+  padding: 8px 15px;
+  /* border: none; */
+  border-radius: 7px;
+  font-family: var(--font-family-primary);
+  font-size: 10px;
+  font-weight: 500;
+  /* color: var(--color-button); */
+  margin-right: 5px;
+  margin-top: 10px;
+  align-items: center;
+
+  ${props =>
+    props.activated
+      ? css`
+          color: var(--bg-button-aceitar);
+          border: 1px solid var(--bg-button-aceitar);
+          background: var(--color-button);
+        `
+      : css`
+          color: var(--bg-button-aceitar);
+          border: 1px solid var(--bg-button-aceitar);
+          background: var(--bg-button-aceitar);
+          color: var(--color-button);
+          border: none;
+        `};
+
+  @media (min-width: 600px) {
+    margin-top: 0;
+    padding: 10px 15px;
   }
 `;
