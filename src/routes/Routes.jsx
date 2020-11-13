@@ -19,7 +19,7 @@ const Route = ({ isPrivate, component: Component, ...rest }) => {
                 ? '/'
                 : user.permission === 'admin'
                 ? '/admin-profile'
-                : '/offers',
+                : '/user-profile',
             }}
           />
         );

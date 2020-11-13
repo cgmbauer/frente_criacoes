@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Form } from '@unform/web';
+
 export const SignupProfileAdmin = styled.section`
   width: 100%;
   height: 100vh;
@@ -52,7 +54,7 @@ export const SignupTitleText = styled.h1`
   color: var(--color-primary);
 `;
 
-export const Form = styled.form`
+export const UForm = styled(Form)`
   margin: 50px auto 0;
 
   display: flex;

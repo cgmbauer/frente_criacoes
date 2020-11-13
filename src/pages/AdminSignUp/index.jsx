@@ -4,6 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { FaArrowLeft } from 'react-icons/fa';
 
+import { useAuth } from '../../hooks/auth';
+
 import api from '../../services/api';
 
 import Header from '../../components/HeaderExterna';
@@ -12,6 +14,8 @@ import Input from '../../components/Input';
 import { UForm, SignupContainer, SignupTitle, SignupTitleText } from './styles';
 
 const AdminSignUp = () => {
+  const { adminSign } = useAuth();
+
   const formRef = useRef(null);
 
   const history = useHistory();
@@ -20,14 +24,19 @@ const AdminSignUp = () => {
     async formData => {
       try {
         const { nome, email, password } = formData;
-
-        await api.post('/producer/create', {
+        const response = await api.post('/producer/create', {
           name: nome,
           user: {
             login: email,
             password,
           },
         });
+
+        const adminId = response.data.id;
+
+        console.log(response.data);
+
+        await adminSign(adminId, nome, email, password);
 
         history.push('/admin-signin');
       } catch (err) {

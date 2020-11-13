@@ -19,7 +19,7 @@ const Input = ({ name, ...rest }) => {
 
   return (
     <Container>
-      <input ref={inputRef} {...rest} />
+      <input ref={inputRef} {...rest} defaultValue={defaultValue} />
     </Container>
   );
 };

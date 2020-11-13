@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
 
-import { useHistory } from 'react-router-dom';
-
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 
@@ -20,30 +18,28 @@ const ProfileUser = () => {
   const handleSubmit = useCallback(
     async formData => {
       try {
-        console.log(formData);
         const { name, email, gender, genre, cache, disponibilidade } = formData;
 
         const userData = {
           name,
           gender,
-          cache,
+          price: Number(cache),
           relevance: user.relevance,
           genre,
-          status: disponibilidade,
+          status: disponibilidade === 'disponivel',
           user: {
             login: email,
-            password: user.password,
+            password: 123456,
           },
         };
-
         await api.put(`actress/update/${user.id}`, userData);
 
-        updateUser(userData);
+        await updateUser(userData);
       } catch (err) {
-        console.log(err, 'erro ao tentar fazer signIn');
+        console.log(err, 'erro ao tentar atualizar cadastro');
       }
     },
-    [updateUser, user.id, user.password, user.relevance],
+    [updateUser, user.id, user.relevance],
   );
 
   return (
@@ -61,7 +57,16 @@ const ProfileUser = () => {
         <img className="profile" src={DummyImg} alt="dummy profile logo" />
       </LoginTitle>
 
-      <UForm onSubmit={handleSubmit}>
+      <UForm
+        onSubmit={handleSubmit}
+        initialData={{
+          name: user.name,
+          email: user.user.login,
+          gender: user.gender,
+          genre: user.genre,
+          cache: user.price,
+        }}
+      >
         <label htmlFor="name">Nome Completo</label>
         <Input name="name" type="name" id="name" />
 
@@ -70,16 +75,18 @@ const ProfileUser = () => {
 
         <label htmlFor="genero">Gênero</label>
         <Select name="gender" id="genero">
-          <option value=""> </option>
-          <option value="masculino">Masculino</option>
+          <option selected="select" value="masculino">
+            Masculino
+          </option>
           <option value="feminino">Feminino</option>
           <option value="prefironresp">Prefiro não Responder</option>
         </Select>
 
         <label htmlFor="genero-atua">Gênero que atua</label>
         <Select name="genre" id="genero-atua">
-          <option value=""> </option>
-          <option value="terror">Terror</option>
+          <option selected="select" value="terror">
+            Terror
+          </option>
           <option value="comedia">Comédia</option>
           <option value="acão">Acão</option>
           <option value="aventura">Aventura</option>

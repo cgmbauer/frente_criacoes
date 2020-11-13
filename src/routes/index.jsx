@@ -20,7 +20,7 @@ import Dashboard from '../pages/Dashboard';
 
 const Routes = () => (
   <Switch>
-    <Route path="/" exact component={Home} />
+    <Route path="/" exact component={Home} isPrivate={false} />
 
     <Route path="/user-signin" exact component={UserSignIn} isPrivate={false} />
     <Route path="/user-signup" component={UserSignUp} isPrivate={false} />
@@ -29,8 +29,13 @@ const Routes = () => (
     <Route path="/reservations" component={Reservations} isPrivate />
     <Route path="/offers" component={Offers} isPrivate />
 
-    <Route path="/admin-signin" exact component={AdminSignIn} />
-    <Route path="/admin-signup" component={AdminSignUp} />
+    <Route
+      path="/admin-signin"
+      exact
+      component={AdminSignIn}
+      isPrivate={false}
+    />
+    <Route path="/admin-signup" component={AdminSignUp} isPrivate={false} />
 
     <Route path="/admin-profile" component={ProfileAdmin} isPrivate />
     <Route path="/dashboard" component={Dashboard} isPrivate />
