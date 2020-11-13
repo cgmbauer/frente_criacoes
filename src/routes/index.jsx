@@ -12,10 +12,10 @@ import AdminSignIn from '../pages/AdminSignIn';
 import AdminSignUp from '../pages/AdminSignUp';
 
 import ProfileUser from '../pages/ProfileUser';
-import Reservations from '../pages/Reservations';
 import Offers from '../pages/Offers';
 
 import ProfileAdmin from '../pages/ProfileAdmin';
+import Search from '../pages/Search';
 import Dashboard from '../pages/Dashboard';
 
 const Routes = () => (
@@ -26,13 +26,13 @@ const Routes = () => (
     <Route path="/user-signup" component={UserSignUp} isPrivate={false} />
 
     <Route path="/user-profile" component={ProfileUser} isPrivate />
-    <Route path="/reservations" component={Reservations} isPrivate />
     <Route path="/offers" component={Offers} isPrivate />
 
     <Route path="/admin-signin" exact component={AdminSignIn} />
     <Route path="/admin-signup" component={AdminSignUp} />
 
     <Route path="/admin-profile" component={ProfileAdmin} isPrivate />
+    <Route path="/admin-search" component={Search} isPrivate />
     <Route path="/dashboard" component={Dashboard} isPrivate />
   </Switch>
 );
