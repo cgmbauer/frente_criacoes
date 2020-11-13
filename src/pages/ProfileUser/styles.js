@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Form } from '@unform/web';
+
 export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
@@ -35,26 +37,13 @@ export const LoginTitleText = styled.h1`
   color: var(--color-primary);
 `;
 
-export const Form = styled.form`
+export const UForm = styled(Form)`
   margin: 10px auto 0;
-
   display: flex;
   flex-direction: column;
-
   max-width: 400px;
 
-  .flexbox{
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items:flex-start;
-    width:100%;
-    label {
-    margin-top:10px;
-   }
-  }
-
- .date1, .date2{
+ .date1 {
   display:flex;
     flex-direction:row;
     justify-content:space-between;
@@ -74,10 +63,30 @@ export const Form = styled.form`
    }
   }
 
-  .vlrmax, .vlrmin, .rs {
+  #orcDisponibilidade{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:flex-end;
+    width:100%;
+    margin-top:6px;
+    margin: 10px 0 0 6
+
+  }
+
+
+   .cache {
+     display: inline-block;
+    max-width: 150px;
+    margin: 10px 0 0 6
+  }
+
+
+   .disponibilidade {
     display: inline-block;
-    max-width: 129px;
-    margin: 1px 1px 0;
+    max-width: 150px;
+    min-width:150px;
+    margin: 10px 0 0 6
 
   }
 
@@ -95,35 +104,20 @@ export const Form = styled.form`
     padding: 0px;
     margin: 18px auto 0;
     margin-bottom: 50px;
+    margin-top:25px;
 
-    color: var(--color-button);
+    color: #e9eff9;
     font-weight: 500;
     max-width: 400px;
     transition: opacity 0.3s;
+
+
 
     &:hover {
       opacity: 0.9;
     }
 
   }
-
-  /* select {
-    display: flex;
-    align-items: center;
-
-    border: none;
-    border-radius: 10px;
-
-    padding: 10px;
-    margin-top: 5px;
-
-    background: var(--bg-input);
-
-    font-family: var(--font-family-primary);
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--color-primary);
-  } */
 
   label {
     font-family: var(--font-family-primary);

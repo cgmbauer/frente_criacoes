@@ -40,10 +40,11 @@ a {
   --color-box-cards-gold: #D6B92D;
 
   --bg-input: #E5E5E5;
+  --color-input: #312e38;
   --color-placeholder: #808080;
   --bg-button: #D6B92D;
   --bg-buttonDir: #F25E74;
-  --color-button: #312e38;
+  --color-button: #fff;
 
   --bg-button-aceitar: #47B500;
   --bg-button-recusar: #ff0000;

@@ -19,7 +19,7 @@ const Reservations = () => {
 
       <NavBar
         navProps={[
-          { text: 'Seu perfil', link: '/profile' },
+          { text: 'Seu perfil', link: '/user-profile' },
           { text: 'Reservas', link: '/reservations' },
           { text: 'Propostas', link: '/offers' },
         ]}

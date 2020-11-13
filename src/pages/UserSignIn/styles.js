@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const SignupProfileAdmin = styled.section`
+import { Form } from '@unform/web';
+
+export const LoginContainer = styled.section`
   width: 100%;
   height: 100vh;
 
@@ -30,37 +32,31 @@ export const SignupProfileAdmin = styled.section`
       margin-right: 10px;
     }
   }
-  img.profile {
-    margin-top: 30px;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    border-radius: 50%;
-    }
-}
 `;
 
-export const SignupTitle = styled.div`
+export const LoginTitle = styled.div`
   text-align: center;
-  margin-top: 54px;
+  margin-top: 44px;
+
+  @media (min-width: 600px) {
+    margin-top: 72px;
+  }
 `;
 
-export const SignupTitleText = styled.h1`
+export const LoginTitleText = styled.h1`
   margin: 0 auto;
   font-family: var(--font-family-primary);
   font-weight: 700;
   color: var(--color-primary);
 `;
 
-export const Form = styled.form`
-  margin: 50px auto 0;
+export const UForm = styled(Form)`
+  margin: 21px auto 0;
 
   display: flex;
   flex-direction: column;
 
   max-width: 400px;
-
-
 
   label {
     font-family: var(--font-family-primary);
@@ -78,15 +74,15 @@ export const Form = styled.form`
   button {
     width: 60%;
 
-    background: var(--bg-button);
+    background: var(--bg-buttonDir);
 
     border: 0;
     border-radius: 10px;
 
     padding: 10px;
-    margin: 50px auto 0;
+    margin: 35px auto 0;
 
-    color: #e9eff9;
+    color: var(--color-button);
     font-weight: 500;
 
     transition: opacity 0.3s;
@@ -95,5 +91,26 @@ export const Form = styled.form`
       opacity: 0.9;
     }
   }
+
+  > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    color: var(--color-primary);
+    color: #484848;
+    font-size: 14px;
+
+    margin: 18px 0 0 0;
+
+    text-align: center;
+
+    transition: text-decoration 0.3s;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
