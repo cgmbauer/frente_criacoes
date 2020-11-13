@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const OffersContainer = styled.main`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   max-width: 800px;
 

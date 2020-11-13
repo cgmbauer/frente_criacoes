@@ -19,8 +19,7 @@ const Offers = () => {
       <NavBar
         navProps={[
           { text: 'Seu perfil', link: '/user-profile' },
-          { text: 'Reservas', link: '/reservations' },
-          { text: 'Propostas', link: '/offers' },
+          { text: 'Reservas', link: '/offers' },
         ]}
       />
 
@@ -34,12 +33,10 @@ const Offers = () => {
         <ReservationInformations>
           <section>
             <h3>Anônimo Jones</h3>
-
             <p>Terror | $ 5.000,00</p>
-
             <div>
               <FaCalendarAlt />
-              <p>23/10/2020 - 01/05/2021</p>
+              <p>23/10/2020</p>
             </div>
           </section>
 
@@ -55,13 +52,11 @@ const Offers = () => {
 
         <ReservationInformations>
           <section>
-            <h3>Anônimo Carl</h3>
-
-            <p>Terror | $ 7.500,00</p>
-
+            <h3>Anônimo Jones</h3>
+            <p>Terror | $ 5.000,00</p>
             <div>
               <FaCalendarAlt />
-              <p>23/10/2020 - 01/05/2021</p>
+              <p>23/10/2020</p>
             </div>
           </section>
 
@@ -77,13 +72,11 @@ const Offers = () => {
 
         <ReservationInformations>
           <section>
-            <h3>Anônimo Hugh</h3>
-
-            <p>Terror | $ 6.900,00</p>
-
+            <h3>Anônimo Jones</h3>
+            <p>Terror | $ 5.000,00</p>
             <div>
               <FaCalendarAlt />
-              <p>23/10/2020 - 01/05/2021</p>
+              <p>23/10/2020</p>
             </div>
           </section>
 
@@ -99,13 +92,11 @@ const Offers = () => {
 
         <ReservationInformations>
           <section>
-            <h3>Anônimo Raw</h3>
-
-            <p>Terror | $ 1.900,00</p>
-
+            <h3>Anônimo Jones</h3>
+            <p>Terror | $ 5.000,00</p>
             <div>
               <FaCalendarAlt />
-              <p>23/10/2020 - 01/05/2021</p>
+              <p>23/10/2020</p>
             </div>
           </section>
 
