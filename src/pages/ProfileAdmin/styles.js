@@ -4,9 +4,9 @@ import { Form } from '@unform/web';
 
 export const SignupProfileAdmin = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
-  padding: 10px 20px;
+  padding: 10px 20px 100px;
 
   a {
     display: flex;
@@ -38,8 +38,7 @@ export const SignupProfileAdmin = styled.section`
     height: 100px;
     text-align: center;
     border-radius: 50%;
-    }
-}
+  }
 `;
 
 export const SignupTitle = styled.div`
@@ -61,8 +60,6 @@ export const UForm = styled(Form)`
   flex-direction: column;
 
   max-width: 400px;
-
-
 
   label {
     font-family: var(--font-family-primary);
@@ -96,6 +93,5 @@ export const UForm = styled(Form)`
     &:hover {
       opacity: 0.9;
     }
-  }
   }
 `;

@@ -64,6 +64,7 @@ const ProfileUser = () => {
           gender: user.gender,
           genre: user.genre,
           cache: user.price,
+          status: user.status === true ? 'disponível' : 'indisponivel',
         }}
       >
         <label htmlFor="name">Nome Completo</label>
@@ -98,7 +99,7 @@ const ProfileUser = () => {
           </div>
           <div className="disponibilidade">
             <label htmlFor="disponibilidade">Disponibilidade</label>
-            <Select name="disponibilidade" id="disponibilidade">
+            <Select name="status" id="disponibilidade">
               <option value="disponivel">Disponível</option>
               <option value="indisponivel">Indisponível</option>
             </Select>
