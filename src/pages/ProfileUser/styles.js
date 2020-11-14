@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Form } from '@unform/web';
 
 export const LoginContainer = styled.section`
+  position: relative;
   width: 100%;
   height: 100vh;
   padding: 10px 20px;
@@ -43,51 +44,47 @@ export const UForm = styled(Form)`
   flex-direction: column;
   max-width: 400px;
 
- .date1 {
-  display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-    width:100%;
+  .date1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     input {
-      width:150px;
+      width: 150px;
     }
- }
-
-  #orcamento{
-   width:100%;
-   display:flex;
-   justify-content:space-between;
-   label {
-    margin-top:10px;
-   }
   }
 
-  #orcDisponibilidade{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:flex-end;
-    width:100%;
-    margin-top:6px;
-    margin: 10px 0 0 6
-
+  #orcamento {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    label {
+      margin-top: 10px;
+    }
   }
 
-
-   .cache {
-     display: inline-block;
-    max-width: 150px;
-    margin: 10px 0 0 6
+  #orcDisponibilidade {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 6px;
+    margin: 10px 0 0 6;
   }
 
-
-   .disponibilidade {
+  .cache {
     display: inline-block;
     max-width: 150px;
-    min-width:150px;
-    margin: 10px 0 0 6
+    margin: 10px 0 0 6;
+  }
 
+  .disponibilidade {
+    display: inline-block;
+    max-width: 150px;
+    min-width: 150px;
+    margin: 10px 0 0 6;
   }
 
   button {
@@ -104,19 +101,16 @@ export const UForm = styled(Form)`
     padding: 0px;
     margin: 18px auto 0;
     margin-bottom: 50px;
-    margin-top:25px;
+    margin-top: 25px;
 
     color: #e9eff9;
     font-weight: 500;
     max-width: 400px;
     transition: opacity 0.3s;
 
-
-
     &:hover {
       opacity: 0.9;
     }
-
   }
 
   label {
@@ -151,4 +145,56 @@ export const UForm = styled(Form)`
     &:hover {
       text-decoration: underline;
     }
+  }
+`;
+
+export const AlertModal = styled.section`
+  position: absolute;
+  top: 300px;
+  right: 0;
+
+  width: 230px;
+  height: 70px;
+
+  ${props =>
+    props.modal
+      ? css`
+          display: flex;
+        `
+      : css`
+          display: none;
+        `}
+
+  flex-direction: column;
+  align-items: center;
+
+  padding: 10px;
+
+  background: #f4f4f4;
+
+  border-radius: 6px;
+
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+
+  svg {
+    align-self: flex-end;
+    cursor: pointer;
+
+    transition: opacity 0.3s, color 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+      color: var(--bg-button-recusar);
+    }
+  }
+
+  p {
+    font-family: var(--font-family-primary);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-primary);
+
+    justify-self: center;
+    margin-top: 15px;
+  }
 `;

@@ -33,6 +33,13 @@ export const HeaderContainer = styled.main`
     svg {
       width: 13px;
       height: 13px;
+
+      transition: opacity 0.3s, color 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+        color: var(--bg-button-recusar);
+      }
     }
   }
 `;

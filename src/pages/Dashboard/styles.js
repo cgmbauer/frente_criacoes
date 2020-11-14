@@ -415,10 +415,11 @@ export const ModalContainer = styled.div`
     margin-right: 20px;
 
     cursor: pointer;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, color 0.3s;
 
     &:hover {
       opacity: 0.8;
+      color: var(--bg-button-recusar);
     }
   }
 `;
