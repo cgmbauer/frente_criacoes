@@ -1,33 +1,52 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { Link, useHistory } from 'react-router-dom';
 
-import { FaSignInAlt } from 'react-icons/fa';
+import { FaSignInAlt, FaTimes } from 'react-icons/fa';
 import { useAuth } from '../../hooks/auth';
 
 import Header from '../../components/HeaderExterna';
 import Input from '../../components/Input';
 
-import { UForm, LoginContainer, LoginTitle, LoginTitleText } from './styles';
+import {
+  UForm,
+  LoginContainer,
+  LoginTitle,
+  LoginTitleText,
+  AlertModal,
+} from './styles';
 
 const AdminSignIn = () => {
-  const { signIn } = useAuth();
+  const { signIn, failResponse } = useAuth();
 
   const formRef = useRef(null);
 
   const history = useHistory();
+
+  const [alert, setAlert] = useState(false);
+
+  const toggleAlert = useCallback(() => {
+    setAlert(!alert);
+  }, [alert]);
 
   const handleSubmit = useCallback(
     async formData => {
       try {
         await signIn({ email: formData.email, password: formData.password });
 
+        const response = failResponse;
+
+        if (!response) {
+          toggleAlert();
+          throw new Error('Login/Senha inválidos.');
+        }
+
         history.push('/admin-profile');
       } catch (err) {
         console.log(err, 'erro ao tentar fazer signIn');
       }
     },
-    [history, signIn],
+    [failResponse, history, signIn, toggleAlert],
   );
 
   return (
@@ -54,6 +73,11 @@ const AdminSignIn = () => {
         <FaSignInAlt />
         Criar conta
       </Link>
+
+      <AlertModal modal={alert}>
+        <FaTimes onClick={toggleAlert} />
+        <p>Login ou senha inválidos.</p>
+      </AlertModal>
     </LoginContainer>
   );
 };

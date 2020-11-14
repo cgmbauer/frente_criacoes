@@ -1,7 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+
+import { FaTimes } from 'react-icons/fa';
 
 import api from '../../services/api';
+
 import { useAuth } from '../../hooks/auth';
+
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
 import Input from '../../components/Input';
@@ -13,10 +17,17 @@ import {
   SignupProfileAdmin,
   SignupTitle,
   SignupTitleText,
+  AlertModal,
 } from './styles';
 
 const ProfileAdmin = () => {
   const { user, updateUser, adminSign } = useAuth();
+
+  const [alert, setAlert] = useState(false);
+
+  const toggleAlert = useCallback(() => {
+    setAlert(!alert);
+  }, [alert]);
 
   const handleSubmit = useCallback(
     async formData => {
@@ -32,6 +43,8 @@ const ProfileAdmin = () => {
         };
 
         await api.put(`producer/update/${user.id}`, userData);
+
+        toggleAlert();
 
         await adminSign(user.id, name, email, 123456);
 
@@ -74,6 +87,11 @@ const ProfileAdmin = () => {
 
         <button type="submit">Atualizar</button>
       </UForm>
+
+      <AlertModal modal={alert}>
+        <FaTimes onClick={toggleAlert} />
+        <p>Perfil atualiado com sucesso!</p>
+      </AlertModal>
     </SignupProfileAdmin>
   );
 };

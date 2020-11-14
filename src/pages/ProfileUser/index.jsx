@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+
+import { FaTimes } from 'react-icons/fa';
 
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
@@ -10,10 +12,22 @@ import Select from '../../components/Select';
 
 import DummyImg from '../../assets/profile-dummy.png';
 
-import { UForm, LoginContainer, LoginTitle, LoginTitleText } from './styles';
+import {
+  UForm,
+  LoginContainer,
+  LoginTitle,
+  LoginTitleText,
+  AlertModal,
+} from './styles';
 
 const ProfileUser = () => {
   const { user, updateUser } = useAuth();
+
+  const [alert, setAlert] = useState(false);
+
+  const toggleAlert = useCallback(() => {
+    setAlert(!alert);
+  }, [alert]);
 
   const handleSubmit = useCallback(
     async formData => {
@@ -34,12 +48,14 @@ const ProfileUser = () => {
         };
         await api.put(`actress/update/${user.id}`, userData);
 
+        toggleAlert();
+
         await updateUser(userData);
       } catch (err) {
         console.log(err, 'erro ao tentar atualizar cadastro');
       }
     },
-    [updateUser, user.id, user.relevance],
+    [toggleAlert, updateUser, user.id, user.relevance],
   );
 
   return (
@@ -107,6 +123,11 @@ const ProfileUser = () => {
         </div>
         <button type="submit">Atualizar</button>
       </UForm>
+
+      <AlertModal modal={alert}>
+        <FaTimes onClick={toggleAlert} />
+        <p>Perfil atualiado com sucesso!</p>
+      </AlertModal>
     </LoginContainer>
   );
 };
