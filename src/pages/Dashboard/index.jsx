@@ -1,14 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import Modal from 'react-modal';
-
-import {
-  FaCalendarAlt,
-  FaTrophy,
-  FaUserClock,
-  FaTimes,
-  FaRegCalendarAlt,
-} from 'react-icons/fa';
+import { FaCalendarAlt, FaTrophy, FaUserClock, FaTimes } from 'react-icons/fa';
 
 import api from '../../services/api';
 
@@ -20,6 +12,7 @@ import HeaderInterna from '../../components/HeaderInterna';
 import DummyImg from '../../assets/profile-dummy.png';
 
 import {
+  Container,
   OffersContainer,
   StatisticBox,
   ReservationSection,
@@ -29,20 +22,19 @@ import {
   CardBox,
   CardInformations,
   AvailableSection,
-  Overlay,
-  Dialog,
-  CalendarBox,
-  CalendarInformations,
-  DialogMyReservations,
-  CardBoxMyReservations,
-  CardInformationsMyReservations,
-  DialogDates,
+  ModalContainerDates,
+  ModalContainer,
+  UserInfo,
+  Calendar,
+  ModalContainerReservation,
+  ReservationBox,
+  ReservationInformations,
+  ModalData,
+  ModalContainerTopDates,
   CardBoxDates,
-  DialogArtist,
-  CardBoxArtist,
+  CardBoxTopArtist,
 } from './styles';
 
-Modal.setAppElement('#root');
 const Dashboard = () => {
   const { user } = useAuth();
   const [artistReservationsDates, setArtistReservationsDates] = useState([]);
@@ -274,7 +266,7 @@ const Dashboard = () => {
     user.id,
   ]);
   return (
-    <>
+    <Container>
       <OffersContainer>
         <HeaderInterna />
         <NavBar
@@ -352,60 +344,53 @@ const Dashboard = () => {
           </CardBox>
         ))}
       </OffersContainer>
-      <Modal isOpen={cardBoxModal} onRequestClose={toggleCardBoxModal}>
-        <Overlay>
-          <Dialog>
-            <div className="divCloseModal">
-              <FaTimes onClick={toggleCardBoxModal} />
-            </div>
-            <img className="profile" src={DummyImg} alt="dummy profile logo" />
 
+      <ModalContainerDates isOpen={cardBoxModal}>
+        <ModalContainer>
+          <FaTimes className="closeModal" onClick={toggleCardBoxModal} />
+          <UserInfo>
+            <img className="profile" src={DummyImg} alt="dummy profile logo" />
             {dataTransfer && <h2>{dataTransfer.name}</h2>}
             {dataTransfer && (
-              <h5>{`${dataTransfer.genre} | $ ${dataTransfer.price}`}</h5>
+              <p>{`${dataTransfer.genre} | $ ${dataTransfer.price}`}</p>
             )}
-            <div>
-              <CalendarBox>
-                <div>
-                  <h3>Reservas</h3>
-                  <FaCalendarAlt color="white" />
-                </div>
-                <CalendarInformations>
-                  {artistReservationsDates.length > 0 ? (
-                    artistReservationsDates.map(dates => (
-                      <p key={dates}>{dates}</p>
-                    ))
-                  ) : (
-                    <p>Aguardando novas reservas.</p>
-                  )}
-                </CalendarInformations>
-              </CalendarBox>
-            </div>
-          </Dialog>
-        </Overlay>
-        <Dashboard />
-      </Modal>
-      <Modal
-        isOpen={reservationsModal}
-        onRequestClose={toggleReservationsModal}
-      >
-        <Overlay>
-          <DialogMyReservations>
-            <div className="divCloseModal">
-              <FaTimes onClick={toggleReservationsModal} />
-            </div>
-            <h2 className="reservas">
-              <div className="iconDiv">
-                <FaUserClock />
+            <Calendar>
+              <div>
+                <h3>Reservas</h3>
+                <FaCalendarAlt />
               </div>
-              Suas reservas
-            </h2>
-            <h5>{`Número de reservas: ${reservationsQuantity}`}</h5>
-            {adminReservations.length > 0 &&
+              <div>
+                {artistReservationsDates.length > 0 ? (
+                  artistReservationsDates.map(dates => (
+                    <p key={dates}>{dates}</p>
+                  ))
+                ) : (
+                  <p>Aguardando novas reservas.</p>
+                )}
+              </div>
+            </Calendar>
+          </UserInfo>
+        </ModalContainer>
+      </ModalContainerDates>
+
+      <ModalContainerReservation isOpen={reservationsModal}>
+        <ModalContainer>
+          <FaTimes className="closeModal" onClick={toggleReservationsModal} />
+
+          <ModalData>
+            <div>
+              <FaUserClock />
+              <h2>Reservas</h2>
+            </div>
+
+            <h3>{`Número de reservas: ${reservationsQuantity}`}</h3>
+
+            {adminReservations.length > 0 ? (
               adminReservations.map(reservation => (
-                <CardBoxMyReservations key={reservation.id}>
+                <ReservationBox>
                   <img src={DummyImg} alt="dummy profile logo" />
-                  <CardInformationsMyReservations>
+
+                  <ReservationInformations>
                     <section>
                       <h3>{reservation.actress.name}</h3>
                       <p>{`${reservation.actress.genre} | $ ${reservation.actress.price}`}</p>
@@ -414,56 +399,60 @@ const Dashboard = () => {
                         <p>{reservation.reserveDate}</p>
                       </div>
                     </section>
-                  </CardInformationsMyReservations>
-                </CardBoxMyReservations>
-              ))}
-          </DialogMyReservations>
-        </Overlay>
-        <Dashboard />
-      </Modal>
-      <Modal isOpen={dateModal} onRequestClose={toggleDateModal}>
-        <Overlay>
-          <DialogDates>
-            <div className="divCloseModal">
-              <FaTimes onClick={toggleDateModal} />
+                  </ReservationInformations>
+                </ReservationBox>
+              ))
+            ) : (
+              <p>Aguardando novas reservas.</p>
+            )}
+          </ModalData>
+        </ModalContainer>
+      </ModalContainerReservation>
+
+      <ModalContainerTopDates isOpen={dateModal}>
+        <ModalContainer>
+          <FaTimes className="closeModal" onClick={toggleDateModal} />
+
+          <ModalData>
+            <div>
+              <FaCalendarAlt />
+              <h2>Datas em alta</h2>
             </div>
-            <h2 className="reservas">
-              <div className="iconDiv">
-                <FaRegCalendarAlt />
-              </div>
-              Datas em alta
-            </h2>
-            {daysRanking.length > 0 &&
+
+            {daysRanking.length > 0 ? (
               daysRanking.map(days => (
                 <CardBoxDates key={days}>{days}</CardBoxDates>
-              ))}
-          </DialogDates>
-        </Overlay>
-        <Dashboard />
-      </Modal>
-      <Modal isOpen={artistModal} onRequestClose={toggleArtistModal}>
-        <Overlay>
-          <DialogArtist>
-            <div className="divCloseModal">
-              <FaTimes onClick={toggleArtistModal} />
+              ))
+            ) : (
+              <p>Nenhuma data agendada.</p>
+            )}
+          </ModalData>
+        </ModalContainer>
+      </ModalContainerTopDates>
+
+      <ModalContainerTopDates isOpen={artistModal}>
+        <ModalContainer>
+          <FaTimes className="closeModal" onClick={toggleArtistModal} />
+
+          <ModalData>
+            <div>
+              <FaTrophy />
+              <h2>Top artistas</h2>
             </div>
-            <h2>
-              <div className="iconDiv">
-                <FaTrophy />
-              </div>
-              Top artistas
-            </h2>
-            {artistsRanking.length > 0 &&
+
+            {artistsRanking.length > 0 ? (
               artistsRanking.map((artists, index) => (
-                <CardBoxArtist>
+                <CardBoxTopArtist>
                   <h3 key={artists}>{`${index + 1}º ${artists}`}</h3>
-                </CardBoxArtist>
-              ))}
-          </DialogArtist>
-        </Overlay>
-        <Dashboard />
-      </Modal>
-    </>
+                </CardBoxTopArtist>
+              ))
+            ) : (
+              <p>Nenhum top artista.</p>
+            )}
+          </ModalData>
+        </ModalContainer>
+      </ModalContainerTopDates>
+    </Container>
   );
 };
 
