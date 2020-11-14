@@ -79,6 +79,10 @@ export const AuthProvider = ({ children }) => {
     } else if (isAdminValid.length > 0) {
       setData(isAdminValid[0]);
       localStorage.setItem('@Remote: user', JSON.stringify(isAdminValid[0]));
+    } else if (isAdminValid.length === 0) {
+      throw new Error('Login/Senha inválidos.');
+    } else if (isUserValid.length === 0) {
+      throw new Error('Login/Senha inválidos.');
     }
   }, []);
 
@@ -90,7 +94,6 @@ export const AuthProvider = ({ children }) => {
   }, [adminData]);
 
   const updateUser = useCallback(user => {
-    // VERIFICAR SE O USUÁRIO TEM PERMISSÃO PARA ROTA
     localStorage.setItem('@Remote: user', JSON.stringify(user));
 
     setData(user);

@@ -112,7 +112,6 @@ const Dashboard = () => {
   }, []);
 
   const handleFilters = useCallback(async event => {
-    console.log(event.target.value);
     const eventValue = event.target.value;
 
     const response = await api.get('actress/list');
@@ -145,8 +144,6 @@ const Dashboard = () => {
 
   const handleFilterStatus = useCallback(
     async event => {
-      console.log(event.target.value);
-
       const eventValue = event.target.value;
 
       const response = await api.get('actress/list');
