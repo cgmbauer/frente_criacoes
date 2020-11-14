@@ -111,6 +111,66 @@ const Dashboard = () => {
     getArtistsList();
   }, []);
 
+  const handleFilters = useCallback(async event => {
+    console.log(event.target.value);
+    const eventValue = event.target.value;
+
+    const response = await api.get('actress/list');
+
+    if (response.data.length > 0) {
+      const artistsData = response.data;
+
+      const artistDataWithCapitalGenre = artistsData.map(artist => ({
+        ...artist,
+        genre: artist.genre.charAt(0).toUpperCase() + artist.genre.slice(1),
+      }));
+
+      if (eventValue === 'relevancia') {
+        setArtistList(
+          artistDataWithCapitalGenre.sort((a, b) => b.relevance - a.relevance),
+        );
+      } else if (eventValue === 'maior-preco') {
+        setArtistList(
+          artistDataWithCapitalGenre.sort((a, b) => b.price - a.price),
+        );
+      } else if (eventValue === 'menor-preco') {
+        setArtistList(
+          artistDataWithCapitalGenre.sort((a, b) => a.relevance - b.relevance),
+        );
+      } else {
+        setArtistList(artistDataWithCapitalGenre);
+      }
+    }
+  }, []);
+
+  const handleFilterStatus = useCallback(
+    async event => {
+      console.log(event.target.value);
+
+      const eventValue = event.target.value;
+
+      const response = await api.get('actress/list');
+
+      if (response.data.length > 0) {
+        const artistsData = response.data;
+
+        const artistDataWithCapitalGenre = artistsData.map(artist => ({
+          ...artist,
+          genre: artist.genre.charAt(0).toUpperCase() + artist.genre.slice(1),
+        }));
+
+        if (eventValue === 'true') {
+          setArtistList(artistList.filter(artist => artist.status));
+        } else if (eventValue === 'false') {
+          setArtistList(artistList.filter(artist => !artist.status));
+        } else {
+          setArtistList(artistDataWithCapitalGenre);
+        }
+      }
+    },
+    [artistList],
+  );
+
   const [reservationsQuantity, setReservationsQuantity] = useState(0);
   const [daysRanking, setdaysRanking] = useState([]);
   const [topThreeDays, setTopThreeDays] = useState([]);
@@ -261,16 +321,17 @@ const Dashboard = () => {
         <FilterBox>
           <h3>Filtrar:</h3>
 
-          <select>
+          <select onChange={handleFilters}>
+            <option value="reset">Todos</option>
             <option value="relevancia">Relevância</option>
             <option value="maior-preco">Maior preço</option>
             <option value="menor-preco">Menor preço</option>
           </select>
 
-          <select>
-            <option value="">Status</option>
-            <option value="disponivel">Disponível</option>
-            <option value="indisponivel">Indisponível</option>
+          <select onChange={handleFilterStatus}>
+            <option value="reset">Status</option>
+            <option value="true">Disponível</option>
+            <option value="false">Indisponível</option>
           </select>
         </FilterBox>
         {artistList.map(artists => (
