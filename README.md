@@ -15,27 +15,82 @@ Aplicação feita para controlar habilidades e salários do corpo artístico de 
 
 - [Styled-Components](https://styled-components.com/);
 
-- :construction: em progresso :construction:
+- [Unform](https://github.com/Rocketseat/unform);
+
+- [React Router](https://github.com/ReactTraining/react-router).
+
+## :wrench: Como Utilizar?  
+
+### Pré Reuesitos:
+
+[Yarn v.1.x.x](https://classic.yarnpkg.com/en/docs/install);
+
+[Node 14.x.x](https://nodejs.org/en/).
+
+### Instalando:
+
+1. Clone este repositório `git clone https://github.com/cgmbauer/frente_criacoes`
+
+2. Entre na pasta recém criada `cd frente_criacoes`
+
+3. Execute `yarn` para instalar as dependências.
+
+4. Utilize o back-end através de https://remotecontroller.herokuapp.com/ .
+
+## :green_book: História do Usuário:
+
+- Como usuário, devo conseguir me cadastrar na aplicação;
+
+- Como usuário, devo conseguir fazer login para entrar na aplicação;
+
+- Como usuário, devo conseguir fazer logout da aplicação;
+
+- Como usuário, posso me cadastrar como Produtor ou Artista;
+
+- Como Produtor, eu devo receber uma lista de artistas quando fornecer o número de profissionais, o gênero de minha obra, a data de reserva e o orçamento máximo;
+
+- Como Produtor, posso reservar a data de um artista e visualizar sua disponibilidade;
+
+- Como Produtor, posso filtrar artistas de acordo com sua relevância, status e preço;
+
+- Como Produtor, posso visualizar o perfil de um artista, assim como suas datas reservadas;
+
+- Como Produtor, devo ter um Dashboard mostrando o número de reservas no momento, datas com mais reservas e artistas mais agendados;
+
+- Como Artista, devo conseguir visualizar quais dias estão agendados;
+
+- Como Artista, devo conseguir visualizar qual produtor agendou o dia.
+
+## :pushpin: Requesitos Não-Funcionais:
+
+- Performance;
+
+- Tratamento de exceções;
+
+- Responsividade;
+
+## :rugby_football: Scrum
+
+- Não foi definido um Scrum Master;
+
+- Todos estavam responsáveis por organizar o backlog e através de reuniões nós definiamos as prioridades.
+
+- Sprints de uma semana;
+
+- Utilizamos o Trello para organizar o backlog e Discord para organizar as tarefas e realizar assistências.
+
+## :octocat: GitHub
+
+- Cada membro do grupo possuia sua branch, onde colocava seus commits com novas atualizações.
+
+- Após colocar as atualizações em sua branch, o membro deveria fazer um Pull Request para a branch Main, onde outro membro deveria checar se havia conflitos e proceder ou não com o Merge.
+
+## :cloud_with_lightning: Dificuldades e Aprendizados :star2:
+
+A maior dificuldade foi a falta de comunicação entre as equipes do back-end e front-end, pois não sabíamos exatamente como os dados chegariam e também não podíamos fazer solicitações. Isso gerou vários retrabalhos em relação ao layout e lógica de programação.
+
+O trabalho em grupo se mostrou bem desafiador também, porém trouxe muito aprendizado. Aprendemos a trabalhar em um ambiente colaborativo (GitHub), resolvendo conflitos que apareciam com os commits. 
+
+Conseguimos também agregar valor a nossa aplicação com a opinião de cada um dos membros do grupo.
 
 
-## :green_book: Utilização do Git
-
-- Antes de tentar fazer um merge, dê um pull da branch master para a sua branch para pegar as últimas atualizações:
-
-    - git checkout <nome_da_sua_branch>                  ex: git checkout dev-gui
-    - git pull origin master
-
-- Para fazer um merge de sua branch para a master:
-
-    - git add .
-    - git commit -m 'feat: alguma coisa'     `*obs1`
-    - git push -u origin <nome_da_sua_branch>            ex: git push -u origin dev-gui
-    - vá até sua branch no GitHub e faça um Pull Request
-
-    `
-    obs1: para saber sobre commits semânticos: https://ilegra.com/blog/tudo-o-que-voce-precisa-saber-sobre-commits-semanticos/
-    `
-
-- Evite fazer push direto para a master, antes de fazer para sua branch.
-
-- Evite modificar arquivos que alguém já está modificando, para evitar conflitos na hora de dar push.
