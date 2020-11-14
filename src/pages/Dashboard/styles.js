@@ -45,7 +45,15 @@ export const ReservationSection = styled.section`
 
   border-radius: 4px;
 
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+
+  cursor: pointer;
+
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   @media (min-width: 345px) {
     width: 40%;
@@ -105,7 +113,15 @@ export const DateSection = styled.section`
 
   border-radius: 4px;
 
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+
+  cursor: pointer;
+
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   @media (min-width: 345px) {
     width: 50%;
@@ -137,7 +153,7 @@ export const DateSection = styled.section`
     margin-top: 3px;
 
     h4 {
-      max-width: 87px;
+      max-width: 70px;
 
       font-family: var(--font-family-primary);
       font-size: 14px;
@@ -178,7 +194,15 @@ export const TopSection = styled.section`
 
   border-radius: 4px;
 
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+
+  cursor: pointer;
+
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   @media (min-width: 620px) {
     min-width: 272px;
@@ -274,6 +298,14 @@ export const CardBox = styled.section`
   border: 1px solid var(--color-box-cards-gold);
   border-radius: 6px;
 
+  cursor: pointer;
+
+  transition: box-shadow 0.1s;
+
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+
   & + section {
     margin: 23px 0 0;
   }
@@ -332,7 +364,7 @@ export const AvailableSection = styled.section`
     font-weight: 500;
     text-align: center;
 
-    width: 100px;
+    width: 110px;
 
     ${props =>
       props.isAvailable
@@ -407,6 +439,7 @@ export const Dialog = styled.div`
     color: var(--primary-color);
 
     margin-left: 10px;
+    margin-top: 25px;
   }
   h5 {
     font-family: var(--font-family-primary);
@@ -445,11 +478,13 @@ export const CalendarBox = styled.div`
 
 export const CalendarInformations = styled.section`
   background-color: #ffffff;
-  padding: 20px;
-  li {
+  margin-top: 15px;
+  p {
     color: #000;
     text-align: center;
-    font-size: 13px;
+    font-size: 17px;
+
+    margin-top: 5px;
   }
 `;
 
@@ -686,7 +721,7 @@ export const CardBoxArtist = styled.section`
     line-height: 23px;
     display: flex;
     align-items: center;
-    color: #a18900;
+    color: var(--color-cards-admin);
   }
 
   @media (min-width: 600px) {

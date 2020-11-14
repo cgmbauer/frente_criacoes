@@ -18,7 +18,7 @@ const ProfileUser = () => {
   const handleSubmit = useCallback(
     async formData => {
       try {
-        const { name, email, gender, genre, cache, disponibilidade } = formData;
+        const { name, email, gender, genre, cache, status } = formData;
 
         const userData = {
           name,
@@ -26,7 +26,7 @@ const ProfileUser = () => {
           price: Number(cache),
           relevance: user.relevance,
           genre,
-          status: disponibilidade === 'disponivel',
+          status: status === 'disponivel',
           user: {
             login: email,
             password: 123456,
