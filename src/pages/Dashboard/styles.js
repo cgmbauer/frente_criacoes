@@ -678,7 +678,6 @@ export const ReservationInformations = styled.section`
         color: var(--color-secondary-cards);
       }
     }
-    }
   }
 `;
 
