@@ -1,5 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+
 import Modal from 'react-modal';
+
 import {
   FaCalendarAlt,
   FaTrophy,
@@ -7,6 +9,11 @@ import {
   FaTimes,
   FaRegCalendarAlt,
 } from 'react-icons/fa';
+
+import api from '../../services/api';
+
+import { useAuth } from '../../hooks/auth';
+
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
 
@@ -37,37 +44,178 @@ import {
 
 Modal.setAppElement('#root');
 const Dashboard = () => {
-  const [modalIsOpen, setModalisOpen] = useState(false);
-  const closeModal = useCallback(() => {
-    setModalisOpen(false);
-  }, []);
-  const openModal = useCallback(() => {
-    setModalisOpen(true);
+  const { user } = useAuth();
+  const [artistReservationsDates, setArtistReservationsDates] = useState([]);
+
+  const [artistList, setArtistList] = useState([]);
+
+  const [dataTransfer, setDataTransfer] = useState([]);
+
+  const [cardBoxModal, setCardBoxModal] = useState(false);
+
+  const toggleCardBoxModal = useCallback(
+    artistId => {
+      api.get(`reserve/listByActress/${artistId}`).then(response => {
+        const artistDateReservation = response.data.map(date =>
+          date.reserveDate.split('-').reverse().join('/'),
+        );
+
+        setArtistReservationsDates(artistDateReservation);
+      });
+
+      const transferArtistData = artistList.filter(
+        artist => artist.id === artistId,
+      );
+
+      setDataTransfer(transferArtistData[0]);
+
+      setCardBoxModal(!cardBoxModal);
+    },
+    [artistList, cardBoxModal],
+  );
+
+  const [reservationsModal, setReservationsModal] = useState(false);
+
+  const toggleReservationsModal = useCallback(() => {
+    setReservationsModal(!reservationsModal);
+  }, [reservationsModal]);
+
+  const [dateModal, setDateModal] = useState(false);
+
+  const toggleDateModal = useCallback(() => {
+    setDateModal(!dateModal);
+  }, [dateModal]);
+
+  const [artistModal, setArtistModal] = useState(false);
+
+  const toggleArtistModal = useCallback(() => {
+    setArtistModal(!artistModal);
+  }, [artistModal]);
+
+  useEffect(() => {
+    async function getArtistsList() {
+      const response = await api.get('actress/list');
+
+      if (response.data.length > 0) {
+        const artistsData = response.data;
+
+        const artistDataWIthCapitalGenre = artistsData.map(artist => ({
+          ...artist,
+          genre: artist.genre.charAt(0).toUpperCase() + artist.genre.slice(1),
+        }));
+
+        setArtistList(artistDataWIthCapitalGenre);
+      }
+    }
+
+    getArtistsList();
   }, []);
 
-  const [modalMyReservations, setModalMyReservationsIsOpen] = useState(false);
-  const closeModalMyReservations = useCallback(() => {
-    setModalMyReservationsIsOpen(false);
-  }, []);
-  const openModalMyReservations = useCallback(() => {
-    setModalMyReservationsIsOpen(true);
+  const [reservationsQuantity, setReservationsQuantity] = useState(0);
+  const [daysRanking, setdaysRanking] = useState([]);
+  const [topThreeDays, setTopThreeDays] = useState([]);
+  const [artistsRanking, setArtistsRanking] = useState([]);
+  const [topThreeArtists, setTopThreeArtists] = useState([]);
+  const [adminReservations, setAdminReservations] = useState([]);
+
+  const arrangeTopDays = useCallback(objectTopDays => {
+    const arrayOfDays = Object.keys(objectTopDays);
+
+    arrayOfDays.sort((a, b) => objectTopDays[b] - objectTopDays[a]);
+
+    const daysWithBackSlash = arrayOfDays.map(days =>
+      days.split('-').reverse().join('/'),
+    );
+
+    setdaysRanking(daysWithBackSlash);
+
+    daysWithBackSlash.splice(3);
+    setTopThreeDays(daysWithBackSlash);
   }, []);
 
-  const [modalDatesIsOpen, setModalDatesIsOpen] = useState(false);
-  const closeModalDates = useCallback(() => {
-    setModalDatesIsOpen(false);
-  }, []);
-  const openModalDates = useCallback(() => {
-    setModalDatesIsOpen(true);
+  const arrangeReservationList = useCallback(arrayReservationList => {
+    const objectOfMostReservedArtists = {};
+
+    arrayReservationList.forEach(list => {
+      if (
+        Object.keys(objectOfMostReservedArtists).includes(
+          String(list.actress.id),
+        )
+      ) {
+        Object.assign(objectOfMostReservedArtists, {
+          [String(list.actress.id)]: {
+            quantity: objectOfMostReservedArtists[list.actress.id].quantity + 1,
+            name: list.actress.name,
+          },
+        });
+      } else {
+        Object.assign(objectOfMostReservedArtists, {
+          [String(list.actress.id)]: { quantity: 1, name: list.actress.name },
+        });
+      }
+    });
+
+    const arrayOfArtistsIds = Object.keys(objectOfMostReservedArtists);
+
+    arrayOfArtistsIds.sort(
+      (a, b) =>
+        objectOfMostReservedArtists[b].quantity -
+        objectOfMostReservedArtists[a].quantity,
+    );
+
+    const nameOfTopArtists = arrayOfArtistsIds.map(
+      id => objectOfMostReservedArtists[id].name,
+    );
+
+    setArtistsRanking(nameOfTopArtists);
+
+    nameOfTopArtists.splice(3);
+
+    setTopThreeArtists(nameOfTopArtists);
   }, []);
 
-  const [modalArtistIsOpen, setModalArtistIsOpen] = useState(false);
-  const closeModalArtist = useCallback(() => {
-    setModalArtistIsOpen(false);
+  const arrangeReservationPageFormat = useCallback(producerReservationList => {
+    const artistDataWIthCapitalGenre = producerReservationList.map(artist => ({
+      ...artist,
+      actress: Object.assign(artist.actress, {
+        genre:
+          artist.actress.genre.charAt(0).toUpperCase() +
+          artist.actress.genre.slice(1),
+      }),
+      reserveDate: artist.reserveDate.split('-').reverse().join('/'),
+    }));
+
+    setAdminReservations(artistDataWIthCapitalGenre);
   }, []);
-  const openModalArtist = useCallback(() => {
-    setModalArtistIsOpen(true);
-  }, []);
+
+  useEffect(() => {
+    async function producerData() {
+      const [
+        numberOfReservations,
+        topDays,
+        reservationList,
+      ] = await Promise.all([
+        api.get(`reserve/countByProducer/${user.id}`),
+        api.get(`reserve/getMostReservedDatesByProducer/${user.id}`),
+        api.get(`reserve/listByProducer/${user.id}`),
+      ]);
+
+      arrangeTopDays(topDays.data);
+
+      arrangeReservationList(reservationList.data);
+
+      arrangeReservationPageFormat(reservationList.data);
+
+      setReservationsQuantity(numberOfReservations.data);
+    }
+
+    producerData();
+  }, [
+    arrangeReservationList,
+    arrangeReservationPageFormat,
+    arrangeTopDays,
+    user.id,
+  ]);
   return (
     <>
       <OffersContainer>
@@ -81,32 +229,32 @@ const Dashboard = () => {
         />
 
         <StatisticBox>
-          <ReservationSection onClick={openModalMyReservations}>
+          <ReservationSection onClick={toggleReservationsModal}>
             <div>
               <h4>Número de reservas</h4>
               <FaUserClock />
             </div>
-            <p>435</p>
+            <p>{reservationsQuantity}</p>
           </ReservationSection>
 
-          <DateSection onClick={openModalDates}>
+          <DateSection onClick={toggleDateModal}>
             <div>
-              <h4>Meses em alta</h4>
+              <h4>Dias em alta</h4>
               <FaCalendarAlt />
             </div>
-            <p>Abril</p>
-            <p>Agosto</p>
-            <p>Setembro</p>
+            {topThreeDays.length > 0 &&
+              topThreeDays.map(days => <p key={days}>{days}</p>)}
           </DateSection>
 
-          <TopSection onClick={openModalArtist}>
+          <TopSection onClick={toggleArtistModal}>
             <div>
               <h4>Top artistas</h4>
               <FaTrophy />
             </div>
-            <p>1º Anônimo da Silva Pereira</p>
-            <p>2º Elicreusa Rosana de Ruanda</p>
-            <p>3º Joseph José João</p>
+            {topThreeArtists.length > 0 &&
+              topThreeArtists.map((artist, index) => (
+                <p key={artist}>{`${index + 1}º ${artist}`}</p>
+              ))}
           </TopSection>
         </StatisticBox>
 
@@ -125,47 +273,39 @@ const Dashboard = () => {
             <option value="indisponivel">Indisponível</option>
           </select>
         </FilterBox>
-        <CardBox onClick={openModal}>
-          <img src={DummyImg} alt="dummy profile logo" />
+        {artistList.map(artists => (
+          <CardBox
+            key={artists.id}
+            onClick={() => toggleCardBoxModal(artists.id)}
+          >
+            <img src={DummyImg} alt="dummy profile logo" />
 
-          <CardInformations>
-            <section>
-              <h3>Anônimo Jones</h3>
+            <CardInformations>
+              <section>
+                <h3>{artists.name}</h3>
 
-              <p>Terror | $ 5.000,00</p>
-            </section>
+                <p>{`${artists.genre} | $ ${artists.price}`}</p>
+              </section>
 
-            <AvailableSection isAvailable>
-              <p>DISPONÍVEL</p>
-            </AvailableSection>
-          </CardInformations>
-        </CardBox>
-
-        <CardBox onClick={openModal}>
-          <img src={DummyImg} alt="dummy profile logo" />
-
-          <CardInformations>
-            <section>
-              <h3>Anônimo Jones</h3>
-
-              <p>Terror | $ 5.000,00</p>
-            </section>
-
-            <AvailableSection isAvailable={false}>
-              <p>INDISPONÍVEL</p>
-            </AvailableSection>
-          </CardInformations>
-        </CardBox>
+              <AvailableSection isAvailable={artists.status}>
+                <p>{artists.status ? 'Disponível' : 'Indisponível'}</p>
+              </AvailableSection>
+            </CardInformations>
+          </CardBox>
+        ))}
       </OffersContainer>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalisOpen(false)}>
+      <Modal isOpen={cardBoxModal} onRequestClose={toggleCardBoxModal}>
         <Overlay>
           <Dialog>
             <div className="divCloseModal">
-              <FaTimes onClick={closeModal} />
+              <FaTimes onClick={toggleCardBoxModal} />
             </div>
             <img className="profile" src={DummyImg} alt="dummy profile logo" />
-            <h2>Anônimo Jones</h2>
-            <h5>Terror | R$ 5.000,00</h5>
+
+            {dataTransfer && <h2>{dataTransfer.name}</h2>}
+            {dataTransfer && (
+              <h5>{`${dataTransfer.genre} | $ ${dataTransfer.price}`}</h5>
+            )}
             <div>
               <CalendarBox>
                 <div>
@@ -173,9 +313,13 @@ const Dashboard = () => {
                   <FaCalendarAlt color="white" />
                 </div>
                 <CalendarInformations>
-                  <li>14/03/2020 - 15/04/2020</li>
-                  <li>20/08/2020 - 13/09/2020</li>
-                  <li>30/10/2020 - 01/12/2020</li>
+                  {artistReservationsDates.length > 0 ? (
+                    artistReservationsDates.map(dates => (
+                      <p key={dates}>{dates}</p>
+                    ))
+                  ) : (
+                    <p>Aguardando novas reservas.</p>
+                  )}
                 </CalendarInformations>
               </CalendarBox>
             </div>
@@ -184,13 +328,13 @@ const Dashboard = () => {
         <Dashboard />
       </Modal>
       <Modal
-        isOpen={modalMyReservations}
-        onRequestClose={() => setModalMyReservationsIsOpen(false)}
+        isOpen={reservationsModal}
+        onRequestClose={toggleReservationsModal}
       >
         <Overlay>
           <DialogMyReservations>
             <div className="divCloseModal">
-              <FaTimes onClick={closeModalMyReservations} />
+              <FaTimes onClick={toggleReservationsModal} />
             </div>
             <h2 className="reservas">
               <div className="iconDiv">
@@ -198,32 +342,32 @@ const Dashboard = () => {
               </div>
               Suas reservas
             </h2>
-            <h5>Número de reservas: 3</h5>
-            <CardBoxMyReservations>
-              <img src={DummyImg} alt="dummy profile logo" />
-              <CardInformationsMyReservations>
-                <section>
-                  <h3>Anônimo Jones</h3>
-                  <p>Terror | $ 5.000,00</p>
-                  <div>
-                    <FaCalendarAlt />
-                    <p>11/11/2020 - 19/02/2021</p>
-                  </div>
-                </section>
-              </CardInformationsMyReservations>
-            </CardBoxMyReservations>
+            <h5>{`Número de reservas: ${reservationsQuantity}`}</h5>
+            {adminReservations.length > 0 &&
+              adminReservations.map(reservation => (
+                <CardBoxMyReservations key={reservation.id}>
+                  <img src={DummyImg} alt="dummy profile logo" />
+                  <CardInformationsMyReservations>
+                    <section>
+                      <h3>{reservation.actress.name}</h3>
+                      <p>{`${reservation.actress.genre} | $ ${reservation.actress.price}`}</p>
+                      <div>
+                        <FaCalendarAlt />
+                        <p>{reservation.reserveDate}</p>
+                      </div>
+                    </section>
+                  </CardInformationsMyReservations>
+                </CardBoxMyReservations>
+              ))}
           </DialogMyReservations>
         </Overlay>
         <Dashboard />
       </Modal>
-      <Modal
-        isOpen={modalDatesIsOpen}
-        onRequestClose={() => setModalDatesIsOpen(false)}
-      >
+      <Modal isOpen={dateModal} onRequestClose={toggleDateModal}>
         <Overlay>
           <DialogDates>
             <div className="divCloseModal">
-              <FaTimes onClick={closeModalDates} />
+              <FaTimes onClick={toggleDateModal} />
             </div>
             <h2 className="reservas">
               <div className="iconDiv">
@@ -231,20 +375,19 @@ const Dashboard = () => {
               </div>
               Datas em alta
             </h2>
-            <CardBoxDates>20/12/2020</CardBoxDates>
-            <CardBoxDates>10/01/2021</CardBoxDates>
+            {daysRanking.length > 0 &&
+              daysRanking.map(days => (
+                <CardBoxDates key={days}>{days}</CardBoxDates>
+              ))}
           </DialogDates>
         </Overlay>
         <Dashboard />
       </Modal>
-      <Modal
-        isOpen={modalArtistIsOpen}
-        onRequestClose={() => setModalArtistIsOpen(false)}
-      >
+      <Modal isOpen={artistModal} onRequestClose={toggleArtistModal}>
         <Overlay>
           <DialogArtist>
             <div className="divCloseModal">
-              <FaTimes onClick={closeModalArtist} />
+              <FaTimes onClick={toggleArtistModal} />
             </div>
             <h2>
               <div className="iconDiv">
@@ -252,12 +395,12 @@ const Dashboard = () => {
               </div>
               Top artistas
             </h2>
-            <CardBoxArtist>
-              <h3>1 - Anônimo da Silva Pereira</h3>
-            </CardBoxArtist>
-            <CardBoxArtist>
-              <h3>2 - Elicreusa Rosanna de Ruanda</h3>
-            </CardBoxArtist>
+            {artistsRanking.length > 0 &&
+              artistsRanking.map((artists, index) => (
+                <CardBoxArtist>
+                  <h3 key={artists}>{`${index + 1}º ${artists}`}</h3>
+                </CardBoxArtist>
+              ))}
           </DialogArtist>
         </Overlay>
         <Dashboard />

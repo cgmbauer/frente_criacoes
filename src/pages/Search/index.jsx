@@ -74,7 +74,7 @@ const Search = () => {
     await api.put(`actress/update/${userDataFromAPI.id}`, userData);
   }, []);
 
-  const handleActivated = useCallback(
+  const handleUserReservation = useCallback(
     async castId => {
       try {
         setActivated(true);
@@ -167,7 +167,7 @@ const Search = () => {
                   <Button
                     className="bt-offers"
                     type="button"
-                    onClick={() => handleActivated(cast.id)}
+                    onClick={() => handleUserReservation(cast.id)}
                     activated={activated}
                   >
                     CONTRATAR

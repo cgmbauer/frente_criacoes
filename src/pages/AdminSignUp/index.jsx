@@ -43,7 +43,7 @@ const AdminSignUp = () => {
         console.log(err, 'erro ao tentar cadastrar');
       }
     },
-    [history],
+    [adminSign, history],
   );
 
   return (
