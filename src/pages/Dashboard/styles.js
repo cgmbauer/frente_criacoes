@@ -1,5 +1,12 @@
 import styled, { css } from 'styled-components';
 
+export const Container = styled.main`
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+`;
+
 export const OffersContainer = styled.main`
   width: 100%;
   height: 100%;
@@ -389,199 +396,260 @@ export const AvailableSection = styled.section`
   }
 `;
 
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-
+export const ModalContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+
+  width: 330px;
+  height: auto;
+  min-height: 300px;
+
+  background: #f4f4f4;
+
+  padding-bottom: 50px;
+
+  svg.closeModal {
+    align-self: flex-end;
+    margin-top: 15px;
+    margin-right: 20px;
+
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+`;
+
+export const ModalContainerDates = styled.div`
+  ${props =>
+    props.isOpen
+      ? css`
+          display: flex;
+        `
+      : css`
+          display: none;
+        `}
+
+  align-items: center;
+  justify-content: center;
+
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-  background-color: rgba(78, 89, 131, 0.5);
-  backdrop-filter: blur(5px);
-
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 `;
 
-export const Dialog = styled.div`
+export const UserInfo = styled.div`
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  max-height: calc(100% - 144px);
-  width: 472px;
-  height: 561px;
-  top: 310px;
-  left: 484px;
-  padding: 24px;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 32px rgba(78, 89, 131, 0.2);
-  border-radius: 8px;
-  text-align: center;
-  .divCloseModal {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .profile {
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin: 30px auto 0;
+
+  img {
     width: 100px;
     height: 100px;
-    align-items: center;
+
     border-radius: 50%;
-    top: 100px;
-  }
-  h2 {
-    font-family: var(--font-family-primary);
-    font-size: 30px;
-    font-weight: 400;
-    color: var(--primary-color);
-
-    margin-left: 10px;
-    margin-top: 25px;
-  }
-  h5 {
-    font-family: var(--font-family-primary);
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--primary-color);
-
-    margin-left: 10px;
-  }
-`;
-
-export const CalendarBox = styled.div`
-  margin-left: 90px;
-  margin-top: 100px;
-  width: 249px;
-  height: 184px;
-  border: 1px solid #000000;
-  border-radius: 6px;
-
-  div {
-    width: 100%;
-    background-color: #000000;
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    border-radius: 5px;
-    width: 249px;
-    height: 40px;
-
-    h3 {
-      color: #ffffff;
-      font-size: 15px;
-    }
-  }
-`;
-
-export const CalendarInformations = styled.section`
-  background-color: #ffffff;
-  margin-top: 15px;
-  p {
-    color: #000;
-    text-align: center;
-    font-size: 17px;
-
-    margin-top: 5px;
-  }
-`;
-
-export const DialogMyReservations = styled.div`
-  flex-direction: column;
-  justify-content: space-between;
-  max-height: calc(100% - 144px);
-  width: 472px;
-  min-height: 755px;
-  overflow: scroll;
-  height: 100%;
-  top: 310px;
-  left: 484px;
-  padding: 24px;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 32px rgba(78, 89, 131, 0.2);
-  border-radius: 8px;
-  .divCloseModal {
-    display: flex;
-    justify-content: flex-end;
   }
 
   h2 {
-    margin-top: 35px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     font-family: var(--font-family-primary);
     font-size: 25px;
-    font-weight: 400;
-    color: var(--primary-color);
-    justify-content: center;
-    .iconDiv {
-      margin-right: 10px;
-      svg {
-        width: 50px;
-      }
-    }
+    font-weight: 700;
+    color: var(--color-primary);
+
+    margin-top: 25px;
   }
 
-  h5 {
-    text-align: start;
-    margin: 40px 0 20px 40px !important;
+  p {
+    font-family: var(--font-family-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-primary);
+
+    margin-top: 7px;
   }
 `;
 
-export const CardBoxMyReservations = styled.section`
+export const Calendar = styled.div`
+  width: 200px;
+  height: 100%;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 40px;
+
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+
+  div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #000;
+
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+    padding: 5px;
+
+    h3 {
+      font-family: var(--font-family-primary);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-secondary);
+    }
+
+    > svg {
+      width: 20px;
+      height: 20px;
+
+      color: var(--color-secondary);
+
+      margin: 0;
+
+      align-self: initial;
+    }
+  }
+
+  div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+
+    p {
+      font-family: var(--font-family-primary);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+  }
+`;
+
+export const ModalContainerReservation = styled.div`
+  ${props =>
+    props.isOpen
+      ? css`
+          display: flex;
+        `
+      : css`
+          display: none;
+        `}
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+`;
+
+export const ModalData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 30px;
+
+  div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      margin-right: 8px;
+    }
+
+    h2 {
+      font-family: var(--font-family-primary);
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+  }
+
+  > h3 {
+    font-family: var(--font-family-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-primary);
+
+    margin-top: 40px;
+    margin-left: 15px;
+
+    align-self: flex-start;
+  }
+
+  > p {
+    font-family: var(--font-family-primary);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-primary);
+
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+`;
+
+export const ReservationBox = styled.section`
   display: flex;
   flex-direction: row;
-  width: 347px;
-  height: 121px;
+
+  width: 280px;
 
   padding: 10px;
-  margin: 10px 40px 0;
+  margin: 15px 10px 0;
 
   border: 1px solid var(--color-box-cards-green);
   border-radius: 6px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
 
   & + section {
-    margin: 23px 40px 0;
+    margin: 23px 10px 0;
   }
 
   img {
     width: 50px;
     height: 50px;
-    margin-top: 5px;
 
     border-radius: 50%;
   }
-
-  @media (min-width: 600px) {
-    padding: 15px 12px;
-  }
 `;
-export const CardInformationsMyReservations = styled.section`
-  margin-left: 20px;
-  margin-bottom: 25px;
 
-  @media (min-width: 600px) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-  }
-  svg {
-    margin-right: 5px;
-    color: grey;
-    margin-top: 10px;
-  }
+export const ReservationInformations = styled.section`
+  margin-left: 15px;
 
   section {
-    h3 {
-      margin-bottom: 1px;
-      margin-top: 25px;
+    > h3 {
       font-family: var(--font-family-primary);
       font-size: 18px;
       font-weight: 500;
@@ -589,142 +657,95 @@ export const CardInformationsMyReservations = styled.section`
     }
 
     p {
-      margin-top: 10px;
       font-family: var(--font-family-primary);
       font-size: 13px;
       font-weight: 500;
       color: var(--color-secondary-cards);
     }
+
     div {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-top: 4px;
+
+      svg {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        color: var(--color-secondary-cards);
+      }
+    }
     }
   }
 `;
 
-export const DialogDates = styled.div`
-  flex-direction: column;
-  justify-content: center;
-  max-height: calc(100% - 144px);
-  width: 472px;
-  min-height: 755px;
-  overflow: scroll;
-  height: 100%;
-  top: 310px;
-  left: 484px;
-  padding: 24px;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 32px rgba(78, 89, 131, 0.2);
-  border-radius: 8px;
-  .divCloseModal {
-    display: flex;
-    justify-content: flex-end;
-  }
+export const ModalContainerTopDates = styled.section`
+  ${props =>
+    props.isOpen
+      ? css`
+          display: flex;
+        `
+      : css`
+          display: none;
+        `}
 
-  h2 {
-    margin-top: 45px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-family: var(--font-family-primary);
-    font-size: 25px;
-    font-weight: 400;
-    color: var(--primary-color);
-    justify-content: center;
-    .iconDiv {
-      margin-right: 10px;
-      svg {
-        width: 50px;
-        margin-top: 4px;
-      }
-    }
-  }
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 `;
 
 export const CardBoxDates = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 132px;
-  text-align: center;
-  height: 52px;
+  width: auto;
 
-  padding: 10px;
-  margin: 35px 150px 0;
+  margin: 40px 0 0;
+  padding: 10px 15px;
 
-  border: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 4px;
 
-  @media (min-width: 600px) {
-    padding: 15px 20px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+
+  & + section {
+    margin-top: 20px;
   }
 `;
 
-export const DialogArtist = styled.div`
-  flex-direction: column;
-  justify-content: center;
-  max-height: calc(100% - 144px);
-  width: 472px;
-  min-height: 755px;
-  overflow: scroll;
-  height: 100%;
-  top: 310px;
-  left: 484px;
-  padding: 24px;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 32px rgba(78, 89, 131, 0.2);
-  border-radius: 8px;
-  .divCloseModal {
-    display: flex;
-    justify-content: flex-end;
-  }
+export const CardBoxTopArtist = styled.section`
+  width: 300px;
 
-  h2 {
-    margin-top: 45px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-family: var(--font-family-primary);
-    font-size: 25px;
-    font-weight: 400;
-    color: var(--primary-color);
-    justify-content: center;
-    .iconDiv {
-      margin-right: 15px;
-      svg {
-        width: 50px;
-        margin-top: 4px;
-      }
-    }
-  }
-`;
+  margin: 40px 0 0;
+  padding: 10px 15px;
 
-export const CardBoxArtist = styled.section`
-  display: flex;
-  flex-direction: row;
-  margin-left: 50px;
-  margin-top: 35px;
-  width: 310px;
-  height: 74px;
+  border: none;
+  border-radius: 4px;
 
-  padding: 10px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
 
-  border: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
   h3 {
-    font-size: 17px;
-    text-align: center;
-    font-weight: bold;
-    line-height: 23px;
-    display: flex;
-    align-items: center;
-    color: var(--color-cards-admin);
+    font-family: var(--font-family-primary);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-primary);
   }
 
-  @media (min-width: 600px) {
-    padding: 15px 20px;
+  & + section {
+    margin-top: 20px;
   }
 `;

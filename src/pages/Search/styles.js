@@ -211,7 +211,7 @@ export const ReservationsBox = styled.section`
   flex-direction: row;
   padding: 10px;
   margin: 30px 10px 0;
-  border: 1px solid #1a842f;
+  border: 1px solid var(--color-box-cards-green);
   border-radius: 6px;
 
   .profile {
@@ -255,25 +255,6 @@ export const ReservationInformations = styled.section`
     color: var(--color-secondary-cards);
   }
 
-  /* .bt-offers {
-    background: var(--bg-button-aceitar);
-    padding: 8px 15px;
-    border: none;
-    border-radius: 7px;
-    font-family: var(--font-family-primary);
-    font-size: 10px;
-    font-weight: 500;
-    color: white;
-    margin-right: 5px;
-    margin-top: 10px;
-    align-items: center;
-
-    @media (min-width: 600px) {
-      margin-top: 0;
-      padding: 10px 15px;
-    }
-  } */
-
   .unavailable {
     color: var(--bg-button-recusar) !important;
     font-family: var(--font-family-primary);
@@ -300,14 +281,11 @@ export const ReservationInformations = styled.section`
 `;
 
 export const Button = styled.button`
-  /* background: var(--bg-button-aceitar); */
   padding: 8px 15px;
-  /* border: none; */
   border-radius: 7px;
   font-family: var(--font-family-primary);
   font-size: 10px;
   font-weight: 500;
-  /* color: var(--color-button); */
   margin-right: 5px;
   margin-top: 10px;
   align-items: center;
