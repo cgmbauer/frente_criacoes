@@ -346,7 +346,7 @@ const Dashboard = () => {
       </OffersContainer>
 
       <ModalContainerDates isOpen={cardBoxModal}>
-        <ModalContainer>
+        <ModalContainer tabIndex="0" onBlur={toggleCardBoxModal}>
           <FaTimes className="closeModal" onClick={toggleCardBoxModal} />
           <UserInfo>
             <img className="profile" src={DummyImg} alt="dummy profile logo" />
@@ -374,7 +374,7 @@ const Dashboard = () => {
       </ModalContainerDates>
 
       <ModalContainerReservation isOpen={reservationsModal}>
-        <ModalContainer>
+        <ModalContainer tabIndex="0" onBlur={toggleReservationsModal}>
           <FaTimes className="closeModal" onClick={toggleReservationsModal} />
 
           <ModalData>
@@ -410,7 +410,7 @@ const Dashboard = () => {
       </ModalContainerReservation>
 
       <ModalContainerTopDates isOpen={dateModal}>
-        <ModalContainer>
+        <ModalContainer tabIndex="0" onBlur={toggleDateModal}>
           <FaTimes className="closeModal" onClick={toggleDateModal} />
 
           <ModalData>
@@ -431,7 +431,7 @@ const Dashboard = () => {
       </ModalContainerTopDates>
 
       <ModalContainerTopDates isOpen={artistModal}>
-        <ModalContainer>
+        <ModalContainer tabIndex="0" onBlur={toggleArtistModal}>
           <FaTimes className="closeModal" onClick={toggleArtistModal} />
 
           <ModalData>

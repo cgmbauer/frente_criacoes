@@ -402,14 +402,17 @@ export const ModalContainer = styled.div`
   align-items: center;
 
   width: 330px;
-  height: auto;
+  height: 100%;
+  max-height: 500px;
   min-height: 300px;
 
   background: #f4f4f4;
 
   padding-bottom: 50px;
-
+  overflow-y: auto;
   svg.closeModal {
+    min-width: 16px;
+    min-height: 16px;
     align-self: flex-end;
     margin-top: 15px;
     margin-right: 20px;

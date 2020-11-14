@@ -26,8 +26,6 @@ const Search = () => {
 
   const [date, setDate] = useState('');
 
-  const [activated, setActivated] = useState(false);
-
   const [notFound, setNotFound] = useState(false);
 
   const handleSubmit = useCallback(async formData => {
@@ -45,7 +43,12 @@ const Search = () => {
     if (responseGetCast.data.length > 0) {
       setDate(dtdisponibilidade);
 
-      setCastList(responseGetCast.data);
+      const artistReserved = responseGetCast.data.map(artist => ({
+        ...artist,
+        reserved: false,
+      }));
+
+      setCastList(artistReserved);
 
       setNotFound(false);
     } else {
@@ -66,7 +69,7 @@ const Search = () => {
       genre: userDataFromAPI.genre,
       status: userDataFromAPI.status,
       user: {
-        login: userDataFromAPI.login,
+        login: userDataFromAPI.user.login,
         password: 123456,
       },
     };
@@ -77,14 +80,24 @@ const Search = () => {
   const handleUserReservation = useCallback(
     async castId => {
       try {
-        setActivated(true);
-
         await api.post(`reserve/save/${castId}`, {
           reserveDate: date,
           producer: {
             id: user.id,
           },
         });
+
+        const setReservedArtist = castList.filter(
+          artist => artist.id === castId,
+        );
+
+        Object.assign(setReservedArtist[0], { reserved: true });
+
+        const artistReserved = castList.map(artist =>
+          artist.id === castId ? setReservedArtist[0] : artist,
+        );
+        console.log(artistReserved);
+        setCastList(artistReserved);
 
         handleUserRelevance(castId);
       } catch (err) {
@@ -94,7 +107,7 @@ const Search = () => {
         );
       }
     },
-    [date, handleUserRelevance, user.id],
+    [castList, date, handleUserRelevance, user.id],
   );
 
   return (
@@ -116,7 +129,11 @@ const Search = () => {
               <option value="acao">Acão</option>
               <option value="aventura">Aventura</option>
               <option value="comedia">Comédia</option>
+              <option value="drama">Drama</option>
               <option value="ficcao cientifica">Ficção Cientifica</option>
+              <option value="musical">Musical</option>
+              <option value="romance">Romance</option>
+              <option value="suspense">Suspense</option>
               <option value="terror">Terror</option>
             </Select>
           </FilterBox>
@@ -168,7 +185,7 @@ const Search = () => {
                     className="bt-offers"
                     type="button"
                     onClick={() => handleUserReservation(cast.id)}
-                    activated={activated}
+                    activated={!!cast.reserved}
                   >
                     CONTRATAR
                   </Button>
