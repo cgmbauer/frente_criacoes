@@ -100,12 +100,17 @@ const ProfileUser = () => {
 
         <label htmlFor="genero-atua">Gênero que atua</label>
         <Select name="genre" id="genero-atua">
-          <option selected="select" value="terror">
-            Terror
+          <option selected="select" value="acao">
+            Acão
           </option>
-          <option value="comedia">Comédia</option>
-          <option value="acão">Acão</option>
           <option value="aventura">Aventura</option>
+          <option value="comedia">Comédia</option>
+          <option value="drama">Drama</option>
+          <option value="ficcao cientifica">Ficção Cientifica</option>
+          <option value="musical">Musical</option>
+          <option value="romance">Romance</option>
+          <option value="suspense">Suspense</option>
+          <option value="terror">Terror</option>
         </Select>
 
         <div id="orcDisponibilidade">

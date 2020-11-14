@@ -36,7 +36,7 @@ const AdminSignIn = () => {
 
         const response = failResponse;
 
-        if (!response) {
+        if (response) {
           toggleAlert();
           throw new Error('Login/Senha inválidos.');
         }
