@@ -35,7 +35,7 @@ const Home = () => {
         <Link to="/user-signin">
           <CardUser>
             <div>
-              <img className="user" src={AdminLogo} alt="admin logo" />
+              <img className="user" src={UserLogo} alt="admin logo" />
             </div>
             <p>Ator/Atriz</p>
           </CardUser>
