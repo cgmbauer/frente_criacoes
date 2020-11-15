@@ -1,5 +1,6 @@
-import React from 'react';
-import { FaCalendarAlt } from 'react-icons/fa';
+import React, { useCallback, useState, useEffect } from 'react';
+import { FaCalendarAlt, FaTimes } from 'react-icons/fa';
+import api from '../../services/api';
 
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
@@ -10,9 +11,62 @@ import {
   OffersContainer,
   ReservationBox,
   ReservationInformations,
+  AlertModal,
 } from './styles';
 
 const Offers = () => {
+  const [castList, setCastList] = useState('');
+
+  const [reservas, setReservas] = useState('');
+  const [notFound, setNotFound] = useState(false);
+  const [alert, setAlert] = useState(false);
+
+  const [data, setData] = useState(() => {
+    const user = localStorage.getItem('@Remote: user');
+
+    if (user) {
+      return { user: JSON.parse(user) };
+    }
+
+    return {};
+  });
+  const toggleAlert = useCallback(() => {
+    setAlert(!alert);
+  }, [alert]);
+
+  const handleDeclineReservation = useCallback(
+    async castId => {
+      try {
+        const response = await api.get(
+          `/reserve/listByActress/${data.user.id}`,
+        );
+        await api.delete(`/reserve/delete?id=${castId}`);
+        toggleAlert();
+        setCastList(response.data);
+      } catch (err) {
+        console.log(
+          err,
+          'Não foi possível recursar o agendamento, por favor tente novamente.',
+        );
+      }
+    },
+    [toggleAlert, castList],
+  );
+
+  useEffect(() => {
+    async function getReserveList() {
+      const response = await api.get('/reserve/listByActress/2');
+      if (response.data.length > 0) {
+        const reserveData = response.data;
+        setCastList(reserveData);
+        setNotFound(false);
+      } else {
+        setNotFound(true);
+      }
+    }
+    getReserveList();
+  }, []);
+
   return (
     <OffersContainer>
       <HeaderInterna />
@@ -24,88 +78,54 @@ const Offers = () => {
       />
 
       <div>
-        <h2>Número de reservas: 4</h2>
+        {castList.length > 0 && !notFound && (
+          <h2>
+            Número de reservas:
+            {`  `}
+            {castList.length}
+          </h2>
+        )}
       </div>
 
-      <ReservationBox>
-        <img src={DummyImg} alt="dummy profile logo" />
+      {castList.length > 0 &&
+        !notFound &&
+        castList.map((cast, index) => (
+          <ReservationBox>
+            <img src={DummyImg} alt="dummy profile logo" />
+            <ReservationInformations>
+              <section>
+                <h3>
+                  {cast.producer.name.charAt(0).toUpperCase() +
+                    cast.producer.name.slice(1)}
+                </h3>
+                <p>
+                  {cast.actress.genre}
+                  {` |   R$ `}
+                  {cast.actress.price}
+                </p>
+                <div>
+                  <FaCalendarAlt />
+                  <p>{cast.reserveDate.split('-').reverse().join('/')}</p>
+                </div>
+              </section>
 
-        <ReservationInformations>
-          <section>
-            <h3>Anônimo Jones</h3>
-            <p>Terror | $ 5.000,00</p>
-            <div>
-              <FaCalendarAlt />
-              <p>23/10/2020</p>
-            </div>
-          </section>
+              <section>
+                <button
+                  type="button"
+                  onClick={() => handleDeclineReservation(cast.id)}
+                >
+                  RECUSAR
+                </button>
+              </section>
+            </ReservationInformations>
+          </ReservationBox>
+        ))}
+      {notFound && <p>Nenhum reservar encontrado, por favor aguarde.</p>}
 
-          <section>
-            <button type="button">ACEITAR</button>
-            <button type="button">RECUSAR</button>
-          </section>
-        </ReservationInformations>
-      </ReservationBox>
-
-      <ReservationBox>
-        <img src={DummyImg} alt="dummy profile logo" />
-
-        <ReservationInformations>
-          <section>
-            <h3>Anônimo Jones</h3>
-            <p>Terror | $ 5.000,00</p>
-            <div>
-              <FaCalendarAlt />
-              <p>23/10/2020</p>
-            </div>
-          </section>
-
-          <section>
-            <button type="button">ACEITAR</button>
-            <button type="button">RECUSAR</button>
-          </section>
-        </ReservationInformations>
-      </ReservationBox>
-
-      <ReservationBox>
-        <img src={DummyImg} alt="dummy profile logo" />
-
-        <ReservationInformations>
-          <section>
-            <h3>Anônimo Jones</h3>
-            <p>Terror | $ 5.000,00</p>
-            <div>
-              <FaCalendarAlt />
-              <p>23/10/2020</p>
-            </div>
-          </section>
-
-          <section>
-            <button type="button">ACEITAR</button>
-            <button type="button">RECUSAR</button>
-          </section>
-        </ReservationInformations>
-      </ReservationBox>
-
-      <ReservationBox>
-        <img src={DummyImg} alt="dummy profile logo" />
-
-        <ReservationInformations>
-          <section>
-            <h3>Anônimo Jones</h3>
-            <p>Terror | $ 5.000,00</p>
-            <div>
-              <FaCalendarAlt />
-              <p>23/10/2020</p>
-            </div>
-          </section>
-
-          <section>
-            <button type="button">ACEITAR</button>
-            <button type="button">RECUSAR</button>
-          </section>
-        </ReservationInformations>
-      </ReservationBox>
+      <AlertModal modal={alert}>
+        <FaTimes onClick={toggleAlert} />
+        <p>Reserva rejeitada!</p>
+      </AlertModal>
     </OffersContainer>
   );
 };
