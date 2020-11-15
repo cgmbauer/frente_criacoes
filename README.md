@@ -19,7 +19,7 @@ Aplicação feita para controlar habilidades e salários do corpo artístico de 
 
 - [React Router](https://github.com/ReactTraining/react-router).
 
-## :wrench: Como Utilizar?  
+## :wrench: Como Utilizar?
 
 ### Pré Reuesitos:
 
@@ -89,7 +89,7 @@ Aplicação feita para controlar habilidades e salários do corpo artístico de 
 
 A maior dificuldade foi a falta de comunicação entre as equipes do back-end e front-end, pois não sabíamos exatamente como os dados chegariam e também não podíamos fazer solicitações. Isso gerou vários retrabalhos em relação ao layout e lógica de programação.
 
-O trabalho em grupo se mostrou bem desafiador também, porém trouxe muito aprendizado. Aprendemos a trabalhar em um ambiente colaborativo (GitHub), resolvendo conflitos que apareciam com os commits. 
+O trabalho em grupo se mostrou bem desafiador também, porém trouxe muito aprendizado. Aprendemos a trabalhar em um ambiente colaborativo (GitHub), resolvendo conflitos que apareciam com os commits.
 
 Conseguimos também agregar valor a nossa aplicação com a opinião de cada um dos membros do grupo.
 

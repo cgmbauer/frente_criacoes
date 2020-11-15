@@ -50,12 +50,12 @@ const Offers = () => {
         );
       }
     },
-    [toggleAlert, castList],
+    [toggleAlert],
   );
 
   useEffect(() => {
     async function getReserveList() {
-      const response = await api.get('/reserve/listByActress/2');
+      const response = await api.get(`/reserve/listByActress/${data.user.id}`);
       if (response.data.length > 0) {
         const reserveData = response.data;
         setCastList(reserveData);
@@ -89,7 +89,7 @@ const Offers = () => {
 
       {castList.length > 0 &&
         !notFound &&
-        castList.map((cast, index) => (
+        castList.map(cast => (
           <ReservationBox>
             <img src={DummyImg} alt="dummy profile logo" />
             <ReservationInformations>
