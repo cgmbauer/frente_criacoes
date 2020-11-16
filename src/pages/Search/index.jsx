@@ -96,7 +96,7 @@ const Search = () => {
         const artistReserved = castList.map(artist =>
           artist.id === castId ? setReservedArtist[0] : artist,
         );
-        console.log(artistReserved);
+
         setCastList(artistReserved);
 
         handleUserRelevance(castId);
@@ -174,10 +174,7 @@ const Search = () => {
             <ReservationInformations>
               <section>
                 <h3>{cast.name}</h3>
-                <p>
-                  {`$ `}
-                  {cast.price}
-                </p>
+                <p>{`$ ${cast.price}`}</p>
               </section>
               <section>
                 {cast.status ? (

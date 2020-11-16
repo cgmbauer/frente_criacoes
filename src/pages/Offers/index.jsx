@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { FaCalendarAlt, FaTimes } from 'react-icons/fa';
 import api from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 import NavBar from '../../components/NavBar';
 import HeaderInterna from '../../components/HeaderInterna';
@@ -15,21 +16,12 @@ import {
 } from './styles';
 
 const Offers = () => {
+  const { user } = useAuth();
   const [castList, setCastList] = useState('');
 
-  const [reservas, setReservas] = useState('');
   const [notFound, setNotFound] = useState(false);
   const [alert, setAlert] = useState(false);
 
-  const [data, setData] = useState(() => {
-    const user = localStorage.getItem('@Remote: user');
-
-    if (user) {
-      return { user: JSON.parse(user) };
-    }
-
-    return {};
-  });
   const toggleAlert = useCallback(() => {
     setAlert(!alert);
   }, [alert]);
@@ -37,12 +29,12 @@ const Offers = () => {
   const handleDeclineReservation = useCallback(
     async castId => {
       try {
-        const response = await api.get(
-          `/reserve/listByActress/${data.user.id}`,
-        );
         await api.delete(`/reserve/delete?id=${castId}`);
+
+        const newList = castList.filter(cast => castId !== cast.id);
         toggleAlert();
-        setCastList(response.data);
+
+        setCastList([...newList]);
       } catch (err) {
         console.log(
           err,
@@ -50,22 +42,34 @@ const Offers = () => {
         );
       }
     },
-    [toggleAlert],
+    [castList, toggleAlert],
   );
 
   useEffect(() => {
     async function getReserveList() {
-      const response = await api.get(`/reserve/listByActress/${data.user.id}`);
+      const response = await api.get(`/reserve/listByActress/${user.id}`);
       if (response.data.length > 0) {
         const reserveData = response.data;
-        setCastList(reserveData);
+        console.log(reserveData);
+
+        const artistDataWithCapitalGenre = reserveData.map(artist => ({
+          ...artist,
+          actress: Object.assign(artist.actress, {
+            genre:
+              artist.actress.genre.charAt(0).toUpperCase() +
+              artist.actress.genre.slice(1),
+          }),
+          reserveDate: artist.reserveDate.split('-').reverse().join('/'),
+        }));
+
+        setCastList(artistDataWithCapitalGenre);
         setNotFound(false);
       } else {
         setNotFound(true);
       }
     }
     getReserveList();
-  }, []);
+  }, [user.id]);
 
   return (
     <OffersContainer>
@@ -79,11 +83,7 @@ const Offers = () => {
 
       <div>
         {castList.length > 0 && !notFound && (
-          <h2>
-            Número de reservas:
-            {`  `}
-            {castList.length}
-          </h2>
+          <h2>{`Número de reservas: ${castList.length}`}</h2>
         )}
       </div>
 
@@ -94,18 +94,11 @@ const Offers = () => {
             <img src={DummyImg} alt="dummy profile logo" />
             <ReservationInformations>
               <section>
-                <h3>
-                  {cast.producer.name.charAt(0).toUpperCase() +
-                    cast.producer.name.slice(1)}
-                </h3>
-                <p>
-                  {cast.actress.genre}
-                  {` |   R$ `}
-                  {cast.actress.price}
-                </p>
+                <h3>{cast.producer.name}</h3>
+                <p>{`${cast.actress.genre} | $ ${cast.actress.price}`}</p>
                 <div>
                   <FaCalendarAlt />
-                  <p>{cast.reserveDate.split('-').reverse().join('/')}</p>
+                  <p>{cast.reserveDate}</p>
                 </div>
               </section>
 
