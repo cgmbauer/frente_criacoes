@@ -34,13 +34,11 @@ const AdminSignUp = () => {
 
         const adminId = response.data.id;
 
-        console.log(response.data);
-
         await adminSign(adminId, nome, email, password);
 
         history.push('/admin-signin');
       } catch (err) {
-        console.log(err, 'erro ao tentar cadastrar');
+        throw new Error(err);
       }
     },
     [adminSign, history],

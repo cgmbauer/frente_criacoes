@@ -52,7 +52,7 @@ const ProfileUser = () => {
 
         await updateUser(userData);
       } catch (err) {
-        console.log(err, 'erro ao tentar atualizar cadastro');
+        throw new Error(err);
       }
     },
     [toggleAlert, updateUser, user.id, user.relevance],

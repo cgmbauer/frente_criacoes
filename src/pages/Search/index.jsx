@@ -101,10 +101,7 @@ const Search = () => {
 
         handleUserRelevance(castId);
       } catch (err) {
-        console.log(
-          err,
-          'Não foi possível fazer o agendamento, por favor tente novamente.',
-        );
+        throw new Error(err);
       }
     },
     [castList, date, handleUserRelevance, user.id],

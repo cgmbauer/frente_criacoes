@@ -36,10 +36,7 @@ const Offers = () => {
 
         setCastList([...newList]);
       } catch (err) {
-        console.log(
-          err,
-          'Não foi possível recursar o agendamento, por favor tente novamente.',
-        );
+        throw new Error(err);
       }
     },
     [castList, toggleAlert],
@@ -50,7 +47,6 @@ const Offers = () => {
       const response = await api.get(`/reserve/listByActress/${user.id}`);
       if (response.data.length > 0) {
         const reserveData = response.data;
-        console.log(reserveData);
 
         const artistDataWithCapitalGenre = reserveData.map(artist => ({
           ...artist,

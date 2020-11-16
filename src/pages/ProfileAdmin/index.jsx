@@ -50,7 +50,7 @@ const ProfileAdmin = () => {
 
         await updateUser(userData);
       } catch (err) {
-        console.log(err, 'erro ao tentar atualizar cadastro');
+        throw new Error(err);
       }
     },
     [adminSign, toggleAlert, updateUser, user.id],
