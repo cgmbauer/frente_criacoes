@@ -42,6 +42,7 @@
     "react/prop-types": "off",
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "no-console": "off"
   }
 }
