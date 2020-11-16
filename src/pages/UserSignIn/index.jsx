@@ -18,11 +18,9 @@ import {
 } from './styles';
 
 const UserSignIn = () => {
-  const { signIn, failResponse } = useAuth();
+  const { signIn, failResponseArtist } = useAuth();
 
   const formRef = useRef(null);
-
-  const history = useHistory();
 
   const [alert, setAlert] = useState(false);
 
@@ -38,19 +36,17 @@ const UserSignIn = () => {
           password: formData.password,
         });
 
-        const response = failResponse;
+        const response = failResponseArtist;
 
-        if (!response) {
+        if (response) {
           toggleAlert();
-          throw new Error('Login/Senha inválidos.');
+          console.log('Login/Senha inválidos.');
         }
-
-        history.push('/user-profile');
       } catch (err) {
-        throw new Error(err);
+        console.log(err, 'Erro no servidor. Por favor, tente novamente');
       }
     },
-    [failResponse, history, signIn, toggleAlert],
+    [failResponseArtist, signIn, toggleAlert],
   );
 
   return (

@@ -52,7 +52,7 @@ const ProfileUser = () => {
 
         await updateUser(userData);
       } catch (err) {
-        throw new Error(err);
+        console.log(err, 'Erro no servidor. Por favor, tente novamente');
       }
     },
     [toggleAlert, updateUser, user.id, user.relevance],

@@ -17,11 +17,9 @@ import {
 } from './styles';
 
 const AdminSignIn = () => {
-  const { signIn, failResponse } = useAuth();
+  const { signIn, failResponseAdmin } = useAuth();
 
   const formRef = useRef(null);
-
-  const history = useHistory();
 
   const [alert, setAlert] = useState(false);
 
@@ -34,19 +32,17 @@ const AdminSignIn = () => {
       try {
         await signIn({ email: formData.email, password: formData.password });
 
-        const response = failResponse;
+        const response = failResponseAdmin;
 
         if (response) {
           toggleAlert();
           throw new Error('Login/Senha inválidos.');
         }
-
-        history.push('/admin-profile');
       } catch (err) {
-        throw new Error(err);
+        console.log(err, 'Erro no servidor. Por favor, tente novamente');
       }
     },
-    [failResponse, history, signIn, toggleAlert],
+    [failResponseAdmin, signIn, toggleAlert],
   );
 
   return (

@@ -38,7 +38,7 @@ const AdminSignUp = () => {
 
         history.push('/admin-signin');
       } catch (err) {
-        throw new Error(err);
+        console.log(err, 'Erro no servidor. Por favor, tente novamente');
       }
     },
     [adminSign, history],
