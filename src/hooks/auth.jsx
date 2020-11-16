@@ -91,8 +91,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('@Remote: user');
 
     setData({});
-    console.log(adminData);
-  }, [adminData]);
+  }, []);
 
   const updateUser = useCallback(user => {
     localStorage.setItem('@Remote: user', JSON.stringify(user));

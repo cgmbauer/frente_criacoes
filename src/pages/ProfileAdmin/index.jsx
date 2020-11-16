@@ -53,7 +53,7 @@ const ProfileAdmin = () => {
         console.log(err, 'erro ao tentar atualizar cadastro');
       }
     },
-    [adminSign, updateUser, user.id],
+    [adminSign, toggleAlert, updateUser, user.id],
   );
 
   return (

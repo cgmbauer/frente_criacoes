@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const OffersContainer = styled.main`
+  position: relative;
   width: 100%;
   height: 100%;
 
@@ -116,11 +117,6 @@ export const ReservationInformations = styled.section`
           opacity: 0.9;
         }
 
-        // & + button {
-        //   margin-left: 8px;
-        //   background: var(--bg-button-recusar);
-        // }
-
         @media (min-width: 600px) {
           padding: 5px 4px;
         }
@@ -133,8 +129,8 @@ export const AlertModal = styled.section`
   width: 230px;
   height: 70px;
   position: absolute;
-  top: 200px;
-  left: 250px;
+  top: 230px;
+  right: 10px;
 
   ${props =>
     props.modal
@@ -176,43 +172,5 @@ export const AlertModal = styled.section`
 
     justify-self: center;
     margin-top: 15px;
-  }
-`;
-
-export const AvailableSection = styled.section`
-  margin-top: 10px;
-
-  @media (min-width: 600px) {
-    margin-top: 0;
-  }
-
-  > p {
-    font-family: var(--font-family-primary);
-    font-size: 13px;
-    font-weight: 500;
-    text-align: center;
-
-    width: 110px;
-
-    ${props =>
-      props.buttom
-        ? css`
-            color: var(--bg-button-aceitar) !important;
-            border: 1px solid var(--bg-button-aceitar) !important;
-          `
-        : css`
-            color: var(--bg-button-recusar) !important;
-            border: 1px solid var(--bg-button-recusar) !important;
-          `};
-
-    border-radius: 4px;
-
-    background: transparent;
-
-    padding: 3px 10px;
-
-    @media (min-width: 600px) {
-      padding: 2px 4px;
-    }
   }
 `;
