@@ -126,7 +126,7 @@ const Dashboard = () => {
         );
       } else if (eventValue === 'menor-preco') {
         setArtistList(
-          artistDataWithCapitalGenre.sort((a, b) => a.relevance - b.relevance),
+          artistDataWithCapitalGenre.sort((a, b) => a.price - b.price),
         );
       } else {
         setArtistList(artistDataWithCapitalGenre);

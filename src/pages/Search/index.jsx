@@ -101,7 +101,7 @@ const Search = () => {
 
         handleUserRelevance(castId);
       } catch (err) {
-        throw new Error(err);
+        console.log(err, 'Erro no servidor. Por favor, tente novamente');
       }
     },
     [castList, date, handleUserRelevance, user.id],

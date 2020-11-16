@@ -15,7 +15,8 @@ export const AuthProvider = ({ children }) => {
     return {};
   });
   const [adminData, setAdminData] = useState([]);
-  const [fail, setFail] = useState(false);
+  const [failAdmin, setFailAdmin] = useState(false);
+  const [failArtist, setFailArtist] = useState(false);
 
   const adminSign = useCallback(
     (id, name, login, password) => {
@@ -51,7 +52,8 @@ export const AuthProvider = ({ children }) => {
   );
 
   const signIn = useCallback(async ({ email, password }) => {
-    setFail(false);
+    setFailArtist(false);
+    setFailAdmin(false);
 
     const userResponse = await api.get('/actress/list');
 
@@ -82,8 +84,10 @@ export const AuthProvider = ({ children }) => {
     } else if (isAdminValid.length > 0) {
       setData(isAdminValid[0]);
       localStorage.setItem('@Remote: user', JSON.stringify(isAdminValid[0]));
-    } else if (isAdminValid.length === 0 || isUserValid.length === 0) {
-      setFail(true);
+    } else if (isAdminValid.length === 0) {
+      setFailAdmin(true);
+    } else if (isUserValid.length === 0) {
+      setFailArtist(true);
     }
   }, []);
 
@@ -108,7 +112,8 @@ export const AuthProvider = ({ children }) => {
         updateUser,
         adminSign,
         admin: adminData,
-        failResponse: fail,
+        failResponseAdmin: failAdmin,
+        failResponseUser: failArtist,
       }}
     >
       {children}
