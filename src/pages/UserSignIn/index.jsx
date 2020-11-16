@@ -47,7 +47,7 @@ const UserSignIn = () => {
 
         history.push('/user-profile');
       } catch (err) {
-        console.log(err, 'erro ao tentar fazer signIn');
+        throw new Error(err);
       }
     },
     [failResponse, history, signIn, toggleAlert],

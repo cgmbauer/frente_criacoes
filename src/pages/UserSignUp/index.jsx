@@ -36,7 +36,7 @@ const UserSignUp = () => {
 
         history.push('/user-signin');
       } catch (err) {
-        console.log(err, 'erro ao tentar cadastrar');
+        throw new Error(err);
       }
     },
     [history],
