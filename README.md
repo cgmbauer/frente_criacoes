@@ -25,7 +25,7 @@ https://remote-frentecriacoes.netlify.app/
 
 ## :wrench: Como Utilizar?
 
-### Pré Reuesitos:
+### Pré Requisitos:
 
 [Yarn v.1.x.x](https://classic.yarnpkg.com/en/docs/install);
 
