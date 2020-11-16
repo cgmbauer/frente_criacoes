@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 
 import { FaTimes, FaSignInAlt } from 'react-icons/fa';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 

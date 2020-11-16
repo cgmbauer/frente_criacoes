@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { FaSignInAlt, FaTimes } from 'react-icons/fa';
 import { useAuth } from '../../hooks/auth';
