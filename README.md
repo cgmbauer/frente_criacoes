@@ -7,6 +7,10 @@
 
 Aplicação feita para controlar habilidades e salários do corpo artístico de uma emissora de TV fictícia.
 
+### :rocket: Acesso
+
+https://remote-frentecriacoes.netlify.app/
+
 ## :gear: Ferramentas
 
 - [ReactJS v.17.0.1](https://reactjs.org/);
@@ -92,5 +96,15 @@ A maior dificuldade foi a falta de comunicação entre as equipes do back-end e 
 O trabalho em grupo se mostrou bem desafiador também, porém trouxe muito aprendizado. Aprendemos a trabalhar em um ambiente colaborativo (GitHub), resolvendo conflitos que apareciam com os commits.
 
 Conseguimos também agregar valor a nossa aplicação com a opinião de cada um dos membros do grupo.
+
+## :person_bald: Membros
+
+- [Augusto Daniel](https://github.com/AugustoDevelop);
+
+- [Guilherme Bauer](https://github.com/cgmbauer);
+
+- [Júlio Jaruzo](https://github.com/juliojaruzo);
+
+- [Thiago Silva](https://github.com/Thiagosilvaguitar).
 
 
